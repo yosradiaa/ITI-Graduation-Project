@@ -46,7 +46,7 @@ export class AddProductComponent implements OnInit {
   ngOnInit(): void {
     this.fetchCategories();
     this.fetchOffers();
-    this.fetchProducts(); 
+    this.fetchProducts();
   }
 
   fetchCategories(): void {
@@ -123,11 +123,11 @@ export class AddProductComponent implements OnInit {
     description:new FormControl("" , [Validators.required]),
     file:new FormControl("" , [Validators.required]),
   });
-  
-  
+
+
   public HandleFile(files:any){
     if(files?.length > 0){
-  
+
       const updatedFile = <File>files[0];
       this.productForm.controls["file"].setValue(updatedFile);
     }
@@ -135,9 +135,9 @@ export class AddProductComponent implements OnInit {
     {
       this.productForm.controls["file"].setValue("");
     }
-    
+
   }
-  
+
 
   deleteProduct(productId: number): void {
     const index = this.addedProducts.findIndex(product => product.id === productId);
@@ -207,19 +207,19 @@ export class AddProductComponent implements OnInit {
       if (this.imageFile instanceof File) {
         file = this.imageFile;
       }
-  
+
       this.NavigationService.editProduct(selectedProduct.id, selectedProduct, file)
         .subscribe(
           response => {
-            console.log(response); 
+            console.log(response);
           },
           error => {
-            console.error(error); 
+            console.error(error);
           }
         );
     }
   }
-  
+
 
 
 

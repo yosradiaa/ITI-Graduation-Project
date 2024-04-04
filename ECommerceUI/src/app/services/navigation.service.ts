@@ -93,11 +93,17 @@ export class NavigationService {
     return this.http.delete(url);
   }
 
-  removeCartItemFromBackend(cartItem: any): Observable<any> {
-    // Make an HTTP request to the backend to remove the item from the cart
-    let url = this.baseurl + 'RemoveCartItem';
-    return this.http.post(url, cartItem);
+  // removeCartItemFromBackend(cartItem: any): Observable<any> {
+  //   // Make an HTTP request to the backend to remove the item from the cart
+  //   let url = this.baseurl + 'RemoveCartItem';
+  //   return this.http.post(url, cartItem);
+  // }
+
+  removeCartItem(cartItemId: number): Observable<any> {
+    const url = `${this.baseurl}RemoveCartItem/${cartItemId}`;
+    return this.http.delete(url);
   }
+
 
   getActiveCartOfUser(userid: number) {
     let url = this.baseurl + 'GetActiveCartOfUser/' + userid;

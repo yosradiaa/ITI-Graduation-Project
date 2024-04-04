@@ -14,6 +14,8 @@ import { AdminOrderComponent } from './admin-order/admin-order.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ContactComponent } from './contact/contact.component';
 import { RandomProductsComponent } from './random-products/random-products.component';
+import { LoginnComponent } from './loginn/loginn.component';
+import { RegisterrComponent } from './registerr/registerr.component';
 
 
 const routes: Routes = [
@@ -23,7 +25,8 @@ const routes: Routes = [
   { path: 'product-details', component: ProductDetailsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'orders', component: OrderComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginnComponent },
+  { path: 'registerr', component: RegisterrComponent },
   { path: 'randomProduct', component: RandomProductsComponent },
   { path: 'admin', component: AdminDashboardComponent },
   {

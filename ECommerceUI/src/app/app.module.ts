@@ -29,6 +29,8 @@ import { UserManagementComponent } from './user-management/user-management.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactComponent } from './contact/contact.component';
 import { RandomProductsComponent } from './random-products/random-products.component';
+import { LoginnComponent } from './loginn/loginn.component';
+import { RegisterrComponent } from './registerr/registerr.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { RandomProductsComponent } from './random-products/random-products.compo
     UserManagementComponent,
     ContactComponent,
     RandomProductsComponent,
+    LoginnComponent,
+    RegisterrComponent,
   ],
   imports: [
     BrowserModule,

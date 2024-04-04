@@ -51,5 +51,6 @@ namespace ECommerce.API.DataAccess
         bool UploadImage(int productId, byte[] imageBytes);
         public Task<ResultFile> UploadFile(IFormFile formFile, string folderName);
         public void RemoveFile(string imageUrl);
+        //bool RemoveCartItem(int cartItemId);
     }
 }

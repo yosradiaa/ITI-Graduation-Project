@@ -6,13 +6,16 @@
   </div>
   <div class="row">
       <div class="col-md-4 col-sm-6" *ngFor="let product of products">
-          <div class="card mb-3">
-              <img  src="https://localhost:7149{{product.image}}" class="card-img-top product-image" alt="Product Image"> <!-- Added product-image class -->
+          <div class="card mb-3" OpenProductDetails [productId]="product.id"> <!-- Apply OpenProductDetailsDirective and pass product ID -->
+              <img  src="https://localhost:7149{{product.image}}" class="card-img-top product-image" alt="Product Image">
               <div class="card-body">
                   <h5 class="card-title">{{ product.title }}</h5>
                   <p class="card-text">{{ product.description }}</p>
                   <p class="card-text">Price: {{ product.price }}</p>
-                  <button class="btn btn-primary btn-sm" (click)="addToCart(product)" [disabled]="!utilityService.isLoggedIn()">Add to Cart<span *ngIf="!utilityService.isLoggedIn()"class="btn btn-primary btn-sm" >   (Please login first to add to cart)</span></button>
+                  <button class="btn btn-primary btn-sm" (click)="addToCart(product)" [disabled]="!utilityService.isLoggedIn()">
+                    Add to Cart
+                    <span *ngIf="!utilityService.isLoggedIn()" class="btn btn-primary btn-sm"> (Please login first to add to cart)</span>
+                  </button>
                <br>
               </div>
           </div>

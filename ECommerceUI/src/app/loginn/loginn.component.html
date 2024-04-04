@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>RegistrationForm_v1 by Colorlib</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <div
+      class="wrapper"
+      style="background-image: url('../../assets/Pictures/2.jpg')"
+      style="background-color: hsl(0, 3%, 83%)"
+    >
+      <div class="inner">
+        <div class="image-holder">
+          <img
+            src="../../assets/Pictures/WhatsApp Image 2024-04-04 at 11.53.58 AM.jpeg"
+            alt=""
+            style="height: 600px"
+          />
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="my-form">
+          <h3 style="color: rgb(29, 23, 15)">Login To NIY Wbsite</h3>
+          <br /><br /><br /><br />
+          <div class="form-wrapper">
+            <input
+              type="text"
+              placeholder="Email"
+              class="form-control"
+              id="email"
+              formControlName="email"
+              (blur)="emailFocused = false"
+              (focus)="emailFocused = true"
+            />
+            <br /><br />
+
+            <div
+              class="error-message"
+              *ngIf="Email?.errors?.['required'] && ( Email?.dirty || Email?.touched)"
+            >
+              Email is Required
+            </div>
+
+            <div
+              class="error-message"
+              *ngIf="
+                !emailFocused &&
+                Email?.hasError('email') &&
+                (Email?.dirty || Email?.touched)
+              "
+            >
+              Email is Invalid.
+            </div>
+          </div>
+
+          <div class="form-wrapper">
+            <input
+              type="password"
+              placeholder="Password"
+              class="form-control"
+              id="pwd"
+              formControlName="pwd"
+              #passwordInput
+              (blur)="showPasswordError = true"
+              (focus)="showPasswordError = false"
+            />
+            <div
+              class="error-message"
+              [ngClass]="{ 'text-danger': showPasswordError }"
+            >
+              <div
+                *ngIf="
+                  showPasswordError &&
+                  PWD?.invalid &&
+                  (PWD?.dirty || PWD?.touched)
+                "
+              >
+                <div *ngIf="PWD?.hasError('required')" class="text-danger">
+                  Password is required
+                </div>
+                <div *ngIf="PWD?.hasError('minlength')" class="text-danger">
+                  Invalid Password
+                </div>
+              </div>
+            </div>
+
+            <br />
+
+            <div class="submit-button">
+              <button
+                type="submit"
+                [disabled]="loginForm.invalid"
+                class="btn btn-dark"
+              >
+                Login
+              </button>
+            </div>
+
+            <div class="success-message">
+              <h5 class="text-success">{{ message }}</h5>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

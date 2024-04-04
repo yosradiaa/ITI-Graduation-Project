@@ -64,6 +64,7 @@ export class HeaderComponent implements OnInit {
         .subscribe((res: any) => {
           this.cartItems = res.cartItems.length;
         });
+        
     } else {
       this.cartItems = 0;
     }

@@ -492,6 +492,16 @@ namespace ECommerce.API.Controllers
         }
 
 
+
+        //[HttpDelete("RemoveCartItem/{cartItemId}")]
+        //public IActionResult RemoveCartItem(int cartItemId)
+        //{
+        //    var result = dataAccess.RemoveCartItem(cartItemId);
+        //    return Ok(result ? "removed" : "not removed");
+        //}
+
+
+
         [HttpPost("AddProduct")]
         public async Task<IActionResult> AddProduct([FromForm] ProductDto productdto)
         {
