@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Pending Orders</h2>
+  
+  <div *ngIf="pendingOrders.length === 0" class="alert alert-info mt-4">
+    No pending orders found.
+  </div>
+  <div *ngFor="let order of pendingOrders; let i = index" class="order-container my-4">
+    <div class="order-details">
+      <h3>Order: #{{ i + 1 }}</h3> 
+      <p>User: {{ order.user.firstName }} {{ order.user.lastName }}</p>
+      <p>Ordered On: {{ order.createdAt }}</p>
+      <h4>Products:</h4>
+      <ul>
+        <li *ngFor="let item of order.cart.cartItems" class="product-item">
+          <p>Product: {{ item.product.title }}</p>
+          <p>Price: {{ item.product.price | currency:'USD':'symbol' }}</p>
+          <p>Category: {{ item.product.productCategory.category }}</p>
+          <p>Description: {{ item.product.description }}</p>
+        </li>
+      </ul>
+    </div>
+    <div class="action-buttons px-2">
+      <button class="action-button accept w-50" (click)="acceptOrder(order.id)">Accept</button>
+      <button class="action-button reject w-50" (click)="rejectOrder(order.id)">Reject</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<ng-container *ngIf="!isInAdminDashboard()">
+  <app-header></app-header>
+</ng-container>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<ng-container *ngIf="!isInAdminDashboard()">
+  <app-footer></app-footer>
+</ng-container>

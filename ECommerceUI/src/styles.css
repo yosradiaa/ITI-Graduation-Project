@@ -1,0 +1,97 @@
+
+*{
+  font-family: cursive;
+}
+
+.my-container {
+    max-width: 1500px;
+}
+
+.my-shadow {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.my-rounded-corner {
+    border-radius: 1rem;
+}
+
+.modal-backdrop.fade.show {
+    z-index: 19;
+}
+.welcome .letter {
+    opacity: 0;
+    display: inline-block;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes delay {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes fadeInWithDelay {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(100%);
+    }
+  }
+  
+  .fade-in {
+    animation: fadeIn 1s ease;
+  }
+  
+  .fade-out {
+    animation: fadeOut 1s ease;
+  }
+  
+  .slide-in {
+    animation: slideIn 0.5s ease;
+  }
+  
+  .slide-out {
+    animation: slideOut 0.5s ease;
+  }
+  
+
+ 

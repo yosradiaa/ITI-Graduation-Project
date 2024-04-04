@@ -1,0 +1,143 @@
+<style>
+  .my-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .text-danger {
+    color: red;
+  }
+
+  .error-message {
+    color: red; /* Set the color to red */
+    font-size: 12px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .submit-button {
+    text-align: center;
+  }
+
+  .success-message {
+    margin-top: 20px;
+  }
+  /* Custom CSS for dark modal */
+  .modal-content {
+    background-color: #343a40; /* Adjust as needed */
+    color: #ffffff; /* Text color */
+  }
+
+  .modal-header {
+    border-bottom: 1px solid #454d55; /* Border color */
+  }
+
+  .modal-title {
+    color: #ffffff; /* Title color */
+  }
+
+  .modal-body {
+    color: #ffffff; /* Body text color */
+  }
+
+  .btn-close-white {
+    filter: invert(1); /* Invert close button color */
+  }
+
+  /* Override Bootstrap's default input field styles */
+  .input-field input[type="text"] {
+    background-color: #343a40; /* Input background color */
+    border: 1px solid #6c757d; /* Input border color */
+    color: #ffffff; /* Input text color */
+  }
+
+  .input-field input[type="text"]:focus {
+    border-color: #ffffff; /* Input border color on focus */
+  }
+</style>
+
+<div class="row">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="my-form">
+    <h2 style="text-align: center; font-size: 26px">Login Form</h2>
+
+    <div class="form-group">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+        (blur)="emailFocused = false"
+        (focus)="emailFocused = true"
+      />
+      <div
+        class="error-message"
+        *ngIf="
+          !emailFocused && Email?.invalid && (Email?.dirty || Email?.touched)
+        "
+      >
+        Email is Required
+      </div>
+      <div
+        class="error-message"
+        *ngIf="
+          !emailFocused &&
+          Email?.hasError('email') &&
+          (Email?.dirty || Email?.touched)
+        "
+      >
+        Email is Invalid.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="pwd" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="pwd"
+        formControlName="pwd"
+        #passwordInput
+        (blur)="showPasswordError = true"
+        (focus)="showPasswordError = false"
+      />
+
+      <div
+        class="error-message"
+        [ngClass]="{ 'text-danger': showPasswordError }"
+      >
+        <div
+          *ngIf="
+            showPasswordError && PWD?.invalid && (PWD?.dirty || PWD?.touched)
+          "
+        >
+          <div *ngIf="PWD?.hasError('required')" class="text-danger">
+            Password is required
+          </div>
+          <div *ngIf="PWD?.hasError('minlength')" class="text-danger">
+            Invalid Password
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <div class="submit-button">
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid"
+          class="btn btn-light"
+        >
+          Login
+        </button>
+      </div>
+
+      <div class="success-message">
+        <h5 class="text-success">{{ message }}</h5>
+      </div>
+    </div>
+  </form>
+</div>

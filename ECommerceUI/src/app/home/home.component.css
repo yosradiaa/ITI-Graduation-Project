@@ -1,0 +1,209 @@
+ * {
+     text-transform: uppercase;
+ }
+
+ .banner {
+     background-color: #f5f2f2;
+ }
+
+ .shadows-into light-regular {
+     font-family: "Shadows Into Light", cursive;
+     font-weight: 400;
+     font-style: normal;
+ }
+
+ .pacifico-regular {
+     font-family: "Pacifico", cursive;
+     font-weight: 400;
+     font-style: normal;
+ }
+
+ .signika-israa {
+     font-family: "Signika", sans-serif;
+     font-optical-sizing: auto;
+     font-style: normal;
+     font-variation-settings:
+         "GRAD" 0;
+ }
+
+ .banner {
+     margin: -16px -15px 0px -17px !important;
+     padding: 50px;
+     box-sizing: border-box;
+     height: 500px;
+ }
+
+ .banner .bannerImg {
+     width: 100%;
+ }
+
+ .col-7 {
+     padding-top: 30px;
+     padding-left: 30px;
+ }
+
+ .col-7 button {
+     font-weight: bold;
+     font-size: 17px;
+ }
+
+ p {
+     color: gray;
+ }
+
+ .paragraph {
+     color: gray;
+     max-width: 600px;
+ }
+
+ .welcome-container {
+     text-align: center;
+     margin-top: 100px;
+     align-items: center;
+     justify-content: center;
+ }
+
+ .welcomeDiv p {
+     margin-left: 10% !important;
+     text-align: center;
+     align-items: center !important;
+     justify-content: center !important;
+ }
+
+ .welcome span {
+     opacity: 0;
+     display: inline-block;
+     animation: fadeIn 1s ease forwards infinite;
+ }
+
+ .welcome span:nth-child(1) {
+     animation-delay: 0.1s;
+ }
+
+ .welcome span:nth-child(2) {
+     animation-delay: 0.2s;
+ }
+
+ .welcome span:nth-child(3) {
+     animation-delay: 0.3s;
+ }
+
+ .welcome span:nth-child(4) {
+     animation-delay: 0.4s;
+ }
+
+ .welcome span:nth-child(5) {
+     animation-delay: 0.5s;
+ }
+
+ .welcome span:nth-child(6) {
+     animation-delay: 0.6s;
+ }
+
+ .welcome span:nth-child(7) {
+     animation-delay: 0.7s;
+ }
+
+ @keyframes fadeIn {
+     to {
+         opacity: 1;
+     }
+ }
+
+ .card {
+     background-color: #f5f2f2;
+     text-align: center;
+     justify-content: center;
+     align-items: center;
+     padding: 10px;
+     height: 400px;
+     outline: none;
+     border: none;
+ }
+
+ .card img {
+     text-align: center;
+     width: 200px;
+     padding-top: 10px;
+     height: 200px;
+     object-fit: cover;
+
+ }
+
+ .card-text {
+     margin-left: 20px;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .cardbtn {
+     padding-bottom: 25px;
+ }
+
+ .card button {
+     font-weight: bold;
+     font-size: 16px;
+ }
+
+ .carousel-inner .carousel-item img {
+     width: 250px !important;
+ }
+
+ #carouselExampleIndicators {
+     height: 450px;
+     padding: 100px 200px;
+ }
+
+ .carousel-item .row,
+ .carousel-content,
+ .carousel-inner,
+ .carousel-item,
+ .col-md-8,
+ .carousel-content h3,
+ .carousel-content p,
+ .col-md-4 img,
+ .col-md-4,
+ #carouselExampleIndicators,
+ #slider {
+     background: none;
+ }
+
+
+ :host ::ng-deep .carousel-control-prev-icon,
+ :host ::ng-deep .carousel-control-next-icon {
+     fill: #ffffff !important;
+ }
+
+ #slider {
+     margin: 0 !important;
+     padding: 0 !important;
+ }
+
+ .carousel-item {
+     transition: transform 1s ease;
+ }
+
+ .button {
+     background-color: rgb(126, 126, 126);
+     color: #fff;
+     font-size: 16px;
+ }
+
+ .button:hover {
+     background-color: rgb(141, 140, 140);
+     color: #fff;
+ }
+
+ p {
+     width: 80%;
+     font-size: 14px;
+ }
+
+ .button i {
+     padding-right: 10px;
+     font-weight: bold;
+ }
+
+ .about img {
+     width: 70%;
+ }

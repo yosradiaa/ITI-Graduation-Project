@@ -1,0 +1,21 @@
+<h1 class="h2">Products</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Description</th>
+      <!-- Add more table headers as needed -->
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.id }}</td>
+      <td>{{ product.title }}</td>
+      <td>{{ product.description }}</td>
+      <!-- Add more table cells for other product properties -->
+
+    </tr>
+  </tbody>
+</table>

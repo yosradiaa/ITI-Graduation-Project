@@ -1,0 +1,12 @@
+.logo{
+    font-weight: bold;
+    font-size: 22px;
+}
+#sidebarMenu ul li a{
+background: none;
+background-color: transparent;
+text-decoration: none;
+}
+#sidebarMenu{
+    background-color: transparent;
+}

@@ -1,0 +1,71 @@
+<div class="container my-container mx-auto border border-dark p-4">
+  <h3 class="text-center border py-2 mb-4 my-rounded-corner">Current Cart</h3>
+  <div class="row">
+      <div class="col-md-6">
+          <table class="table table-bordered table-hover">
+              <tbody>
+                  <tr>
+                      <td>Total Items</td>
+                      <td class="fw-bold"> {{usersCart.cartItems.length}} </td>
+                  </tr>
+                  <tr>
+                      <td>Total Price</td>
+                      <td class="fw-bold text-danger"> {{usersPaymentInfo.totalAmount}} </td>
+                  </tr>
+                  <tr>
+                      <td>Shipping Charges</td>
+                      <td class="fw-bold text-danger">{{usersPaymentInfo.shipingCharges}}</td>
+                  </tr>
+                  <tr>
+                      <td>Discount</td>
+                      <td class="fw-bold text-success">{{usersPaymentInfo.amountReduced}}</td>
+                  </tr>
+                  <tr>
+                      <td>You Have to Pay</td>
+                      <td class="fw-bold text-success">{{usersPaymentInfo.amountPaid}}</td>
+                  </tr>
+              </tbody>
+          </table>
+          <div class="d-grid mt-4">
+              <button class="btn btn-success btn-lg" type="button" routerLink="/orders">Order</button>
+          </div>
+      </div>
+      <div class="col-md-6">
+          <div class="row">
+              <div class="col-12">
+                  <h4 class="mb-4">Cart Items</h4>
+              </div>
+              <div class="col-6" *ngFor="let cartItem of usersCart.cartItems">
+                  <div class="card items mb-3">
+                      <app-product [view]="'currcartitem'" [product]="cartItem.product"></app-product>
+                      <div class="card-footer d-flex justify-content-between align-items-center">
+                          <span class="text-danger fw-bold">{{cartItem.product.price}}</span>
+                          <button class="btn btn-danger" (click)="removeCartItem(cartItem)">Remove</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- <h3 class="text-center border py-2 mb-4 mt-5 my-rounded-corner">Previous Carts</h3>
+
+  <div class="row">
+      <div class="col-md-6 mx-auto" *ngFor="let cart of usersPreviousCarts">
+          <div class="card previous mb-3">
+              <div class="card-header d-flex fw-bold justify-content-between align-items-center">
+                  <span class="time">Ordered On: {{cart.orderedOn | date:"dd-MMM-YYYY"}}</span>
+                  <span class="count">Items: {{cart.cartItems.length}}</span>
+                  <span class="price">Price Paid: {{utilityService.calculatePricePaid(cart)}}</span>
+              </div>
+              <div class="card-body">
+                  <div class="row g-2">
+                      <div class="col-6" *ngFor="let cartItem of cart.cartItems">
+                          <app-product [view]="'prevcartitem'" [product]="cartItem.product"></app-product>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div> -->
