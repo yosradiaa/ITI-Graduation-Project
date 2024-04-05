@@ -484,7 +484,7 @@ namespace ECommerce.API.DataAccess
                 command.CommandText = query;
                 command.Parameters.Add("@uid", System.Data.SqlDbType.Int).Value = order.User.Id;
                 command.Parameters.Add("@cid", System.Data.SqlDbType.Int).Value = order.Cart.Id;
-                command.Parameters.Add("@cat", System.Data.SqlDbType.NVarChar).Value = dateformat; // Use the 'dateformat' variable here
+                command.Parameters.Add("@cat", System.Data.SqlDbType.NVarChar).Value = dateformat;
                 command.Parameters.Add("@pid", System.Data.SqlDbType.Int).Value = order.Payment.Id;
 
                 connection.Open();
@@ -1124,8 +1124,6 @@ namespace ECommerce.API.DataAccess
                         Quantity = (int)reader["Quantity"],
                         Image = (reader["Image"] == DBNull.Value) ? string.Empty : reader["Image"].ToString()
                 };
-
-                    // Retrieve image data as byte array
                     
                     products.Add(product);
                 }
@@ -1169,7 +1167,6 @@ namespace ECommerce.API.DataAccess
                         SentAt = Convert.ToDateTime(reader["SentAt"])
                     };
 
-                    // Fetch user details for this contact
                     contact.User = GetUser(contact.UserId);
 
                     contacts.Add(contact);
@@ -1208,12 +1205,12 @@ namespace ECommerce.API.DataAccess
             using (SqlConnection connection = new SqlConnection(dbconnection))
             {
                 string query = @"
-SELECT c.ContactId, c.UserId, c.Message, c.SentAt,
-       u.FirstName AS UserFirstName, u.LastName AS UserLastName,
-       u.Email AS UserEmail, u.Mobile AS UserMobile
-FROM Contact c
-INNER JOIN Users u ON c.UserId = u.UserId
-WHERE c.UserId = @UserId";
+                SELECT c.ContactId, c.UserId, c.Message, c.SentAt,
+                u.FirstName AS UserFirstName, u.LastName AS UserLastName,
+                u.Email AS UserEmail, u.Mobile AS UserMobile
+                FROM Contact c
+                INNER JOIN Users u ON c.UserId = u.UserId
+                WHERE c.UserId = @UserId";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@UserId", userId);
@@ -1314,31 +1311,23 @@ WHERE c.UserId = @UserId";
                     connection.Open();
                     SqlCommand command = connection.CreateCommand();
                     command.CommandType = CommandType.Text;
-
-                    // Assuming you have a way to uniquely identify the product in the database, 
-                    // such as using its title and description
                     command.CommandText = "SELECT ProductId FROM Products WHERE Title = @Title AND Description = @Description";
                     command.Parameters.AddWithValue("@Title", product.Title);
                     command.Parameters.AddWithValue("@Description", product.Description);
-
-                    // Execute the query to retrieve the ProductId
                     object result = command.ExecuteScalar();
 
-                    // Check if the result is not null and can be converted to an integer
                     if (result != null && result != DBNull.Value)
                     {
                         return Convert.ToInt32(result);
                     }
                     else
                     {
-                        // Handle the case where the ProductId is not found
                         throw new InvalidOperationException("ProductId not found");
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Handle exceptions
                 Console.WriteLine($"Error getting ProductId: {ex.Message}");
                 throw;
             }
@@ -1346,35 +1335,24 @@ WHERE c.UserId = @UserId";
 
 
 
-        //1)allowed extension
         public IEnumerable<string> AllowedExtensions { get; set; } = new List<string>() { ".jpg", ".png", ".jpeg" };
-        //2)maxsize file
+
         public int MaxFileSize { get; set; } = 2097152;
 
         public async Task<ResultFile> UploadFile(IFormFile formFile, string folderName)
         {
-            //check if allowedExtensions
+
             var extension = Path.GetExtension(formFile.FileName);
             if (AllowedExtensions.Contains(extension))
             {
-                //check maxsize file
+ 
                 if (formFile.Length < MaxFileSize)
                 {
-                    //image is valid
                     string imageName = $"{Guid.NewGuid()}-{formFile.FileName}";
                     string path = Path.Combine($"{webHostEnvironment.WebRootPath}/images/{folderName}", imageName);
-
-                    //save image to application
                     using var stream = File.Create(path);
                     await formFile.CopyToAsync(stream);
                     stream.Dispose();
-
-
-                    //create thumbnail
-                  
-
-                      
-               
 
 
                     return new ResultFile() { Successed = true, Url = $"/images/{folderName}/{imageName}"};
@@ -1394,7 +1372,6 @@ WHERE c.UserId = @UserId";
 
         public void RemoveFile(string imageUrl)
         {
-            //image is valid
             if (!string.IsNullOrEmpty(imageUrl))
             {
                 string _imagePath = $"{webHostEnvironment.WebRootPath}{imageUrl}";
