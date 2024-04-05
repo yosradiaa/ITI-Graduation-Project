@@ -1,24 +1,49 @@
 <div class="container my-container mx-auto">
-  <div class="row">
-      <div class="col-12">
-          <h1 class="text-center mb-4">Products</h1>
+  <div class="row text-center">
+      <div class="col-12 text-center">
+          <h2 class="text-center mb-4">Products</h2>
       </div>
   </div>
   <div class="row">
+    <div class="col-md-4 col-sm-6 my-3" *ngFor="let product of products">
+        <div class="card text-center" OpenProductDetails [productId]="product.id">
+            <div class="overflow-hidden d-flex justify-content-center align-items-center">
+              <img  src="https://localhost:7149{{product.image}}" class="card-img-top " alt="Product Image" OpenProductDetails [productId]="product.id">
+            </div>
+         
+            <div class="card-body">
+                <h5 class="card-title title"> {{product.title}} </h5>
+              <h6 class="card-subtitle text-danger text-decoration-line-through">
+                {{product.price}}$
+              </h6>
+              <button type="button" class="btn p-2 my-5 fw-bold fs-5" (click)="addToCart(product)" [disabled]="!utilityService.isLoggedIn()">
+                Add to Cart
+                <span *ngIf="!utilityService.isLoggedIn()">(Login First)</span>
+              </button>
+            </div>
+            <div *ngIf="showSuccess" class="notification success">Product added to cart successfully!</div>
+          </div>
+        </div>
+  </div>
+  
+
+
+<!-- 
+  <div class="row">
       <div class="col-md-4 col-sm-6" *ngFor="let product of products">
-          <div class="card mb-3" OpenProductDetails [productId]="product.id"> <!-- Apply OpenProductDetailsDirective and pass product ID -->
+          <div class="card mb-3" OpenProductDetails [productId]="product.id"> 
               <img  src="https://localhost:7149{{product.image}}" class="card-img-top product-image" alt="Product Image">
               <div class="card-body">
                   <h5 class="card-title">{{ product.title }}</h5>
                   <p class="card-text">{{ product.description }}</p>
                   <p class="card-text">Price: {{ product.price }}</p>
-                  <button class="btn btn-primary btn-sm" (click)="addToCart(product)" [disabled]="!utilityService.isLoggedIn()">
+                  <button class="btn btn-success" (click)="addToCart(product)" [disabled]="!utilityService.isLoggedIn()">
                     Add to Cart
-                    <span *ngIf="!utilityService.isLoggedIn()" class="btn btn-primary btn-sm"> (Please login first to add to cart)</span>
+                    <span *ngIf="!utilityService.isLoggedIn()" class="btn btn-success"> (Login First)</span>
                   </button>
                <br>
               </div>
           </div>
       </div>
   </div>
-</div>
+</div> -->

@@ -10,3 +10,14 @@ text-decoration: none;
 #sidebarMenu{
     background-color: transparent;
 }
+header{
+    margin-top: -90px;
+    background-color: gray;
+  padding: 10px;
+  width: 100%;
+}
+header a{
+background-color: gray;
+color: #fff!important;
+
+}

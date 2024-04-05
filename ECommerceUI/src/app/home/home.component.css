@@ -183,6 +183,28 @@
      transition: transform 1s ease;
  }
 
+ .long .card {
+     height: 816px !important;
+ }
+
+ .long img {
+     height: 450px;
+     width: 65%;
+     object-fit: cover;
+     /* margin-left: 140px; */
+ }
+
+ .long button {
+     width: 200px;
+ }
+
+ .long p {
+     width: 100%;
+     justify-content: center;
+     align-items: center;
+     margin-left: 0px;
+ }
+
  .button {
      background-color: rgb(126, 126, 126);
      color: #fff;
@@ -190,7 +212,7 @@
  }
 
  .button:hover {
-     background-color: rgb(141, 140, 140);
+     background-color: rgb(173, 172, 172);
      color: #fff;
  }
 
@@ -207,3 +229,7 @@
  .about img {
      width: 70%;
  }
+
+ /* img:hover {
+     transform: scale(1.1);
+ } */

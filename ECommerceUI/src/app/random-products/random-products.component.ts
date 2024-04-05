@@ -11,12 +11,16 @@ import { UtilityService } from '../services/utility.service'; // Import UtilityS
 export class RandomProductsComponent implements OnInit {
   products: Product[] = [];
 
-  constructor(private navigationService: NavigationService, public utilityService: UtilityService) { } // Make utilityService public
+  constructor(private navigationService: NavigationService, public utilityService: UtilityService) { }
+  showSuccess: boolean = false;
+  addToCartSuccess: boolean = false;
+
 
   ngOnInit(): void {
-    // Fetch all products not related to specific category or subcategory
     this.getAllProductsNotRelatedToCategory();
   }
+
+
 
   getAllProductsNotRelatedToCategory() {
     this.navigationService.getAllProductsNotRelatedToCategory().subscribe(
@@ -29,14 +33,20 @@ export class RandomProductsComponent implements OnInit {
     );
   }
 
-  // Method to add product to cart
+
   addToCart(product: Product) {
-    // Check if user is logged in
     if (this.utilityService.isLoggedIn()) {
-      // Call addToCart method from utility service
       this.utilityService.addToCart(product);
+      this.addToCartSuccess = true;
+    setTimeout(() => {
+      this.addToCartSuccess = false;
+      this.showSuccess = true;
+      setTimeout(() => {
+        this.showSuccess = false;
+      }, 3000);
+    }, 0);
     } else {
-      // Handle case when user is not logged in
+  
       alert('Please log in to add to cart.');
     }
   }

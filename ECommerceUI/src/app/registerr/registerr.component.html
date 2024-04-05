@@ -1,176 +1,121 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>RegistrationForm_v1 by Colorlib</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
+<div class="row">
 
-  <body>
-    <div
-      class="wrapper"
-      style="background-image: url('../../assets/Pictures/2.jpg')"
-      style="background-color: hsl(0, 3%, 83%)"
-    >
-      <div class="inner">
-        <div class="image-holder">
-          <img
-            src="../../assets/Pictures/WhatsApp Image 2024-04-04 at 11.53.58 AM.jpeg"
-            alt=""
-            style="height: 600px"
-          />
+
+
+  <div class="col-4">
+    <img src="./assets/Pictures/login.jpg" alt="" />
+  </div>
+  <div class="col-8">
+
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <h3 class="fw-bold text-center">Registration Form</h3>
+      <br>
+      <div class="container">
+        <div class="input-wrapper">
+          <div class="validation" [class.visible]="FirstName.touched && FirstName.invalid">
+            <div class="form-text error-message" *ngIf="FirstName.errors?.['required']">
+              First Name is Required
+            </div>
+            <div class="form-text error-message"
+              *ngIf="FirstName.errors?.['minlength'] && (FirstName.dirty || FirstName.touched)">
+              At least 2 characters & start with alphabet.
+            </div>
+            <div class="form-text error-message"
+              *ngIf="FirstName.errors?.['startsWithAlphabet'] && (FirstName.dirty || FirstName.touched)">
+              Name should start with an alphabet.
+            </div>
+          </div>
+          <input type="text" placeholder="First Name" id="firstname1" formControlName="firstName"
+            class="form-control" />
         </div>
-        <form [formGroup]="registerForm" (ngSubmit)="register()">
-          <h3 style="color: rgb(29, 23, 15)">Registration Form</h3>
-          <!-- <div class="form-group"> -->
-          <div>
-            <input type="text" placeholder="First Name" id="firstname1" formControlName="firstName" class="form-control" />
-
-            <div *ngIf="FirstName.touched">
-              <div
-                class="form-text text-danger"
-                *ngIf="FirstName.errors?.['required']"
-              >
-                First Name is Required
-              </div>
-              <div
-                class="form-text text-danger"
-                *ngIf="FirstName.errors?.['minlength'] && (FirstName.dirty || FirstName.touched)"
-              >
-                At least 2 characters & start with alphabet.
-              </div>
-              <div
-                class="form-text text-danger"
-                *ngIf="FirstName.errors?.['startsWithAlphabet'] && (FirstName.dirty || FirstName.touched)"
-              >
-                Name should start with an alphabet.
-              </div>
+        <div class="input-wrapper">
+          <div class="validation" [class.visible]="LastName.touched && LastName.invalid">
+            <div class="form-text error-message" *ngIf="LastName.errors?.['required']">
+              Last Name is Required
+            </div>
+            <div class="form-text error-message" *ngIf="LastName.errors?.['minlength']">
+              Last Name is too Short. At least 2 characters.
+            </div>
+            <div class="form-text error-message" *ngIf="LastName.errors?.['pattern']">
+              Name should start with an alphabet.
             </div>
           </div>
+          <input type="text" placeholder="Last Name" id="lastname1" formControlName="lastName" class="form-control" />
+        </div>
+      </div>
 
-          <div>
-            <input type="text" placeholder="Last Name" id="lastname1" formControlName="lastName" class="form-control" />
-
-            <div *ngIf="LastName.touched">
-              <div
-                class="form-text text-danger"
-                *ngIf="LastName.errors?.['required']"
-              >
-                Last Name is Required
-              </div>
-              <div
-                class="form-text text-danger"
-                *ngIf="LastName.errors?.['minlength']"
-              >
-                Last Name is too Short. At least 2 characters.
-              </div>
-              <div
-                class="form-text text-danger"
-                *ngIf="LastName.errors?.['pattern']"
-              >
-                Name should start with an alphabet.
-              </div>
+      <div class="mail">
+        <div class="input-wrapper">
+          <div class="validation" [class.visible]="Email.touched && Email.invalid">
+            <div class="form-text error-message" *ngIf="Email.errors?.['required']">
+              Email is Required
+            </div>
+            <div class="form-text error-message"
+              *ngIf="Email.touched && Email.errors?.['pattern'] && (Email.dirty || Email.touched)">
+              Email is Invalid
             </div>
           </div>
-          <!-- </div> -->
-          <div class="form-wrapper">
-            <input type="text" placeholder="Address" id="address1" formControlName="address" class="form-control" />
+          <input type="text" placeholder="Email" id="email1" formControlName="email" class="form-control" />
+        </div>
 
-            <div
-              class="form-text text-danger"
-              *ngIf="Address.errors?.['required'] && (Address.dirty || Address.touched)"
-            >
+      </div>
+
+      <div class="container">
+        <div class="input-wrapper">
+          <div class="validation" [class.visible]="Address.touched && Address.invalid">
+            <div class="form-text error-message" *ngIf="Address.errors?.['required']">
               Address is Required
             </div>
           </div>
-          <div class="form-wrapper">
-            <input type="text" placeholder="Email" id="email1" formControlName="email" class="form-control" />
-
-            <div
-              class="form-text text-danger"
-              *ngIf="Email.errors?.['required'] && (emailBlurred || Email.dirty || Email.touched)"
-            >
-              Email is Required
+          <input type="text" placeholder="Address" id="address1" formControlName="address" class="form-control" />
+        </div>
+        <div class="input-wrapper">
+          <div class="validation" [class.visible]="Mobile.touched && Mobile.invalid">
+            <div class="form-text error-message" *ngIf="Mobile.errors?.['required']">
+              Phone number is Required
             </div>
-            <!-- Only show the "Invalid Email" message if the field has been blurred and there's a pattern error -->
-            <div
-              class="form-text text-danger"
-              *ngIf="emailBlurred && Email.errors?.['pattern'] && (Email.dirty || Email.touched)"
-            >
-              Invalid Email
+            <div class="form-text error-message" *ngIf="Mobile.errors?.['pattern']">
+              Invalid Mobile Number
             </div>
           </div>
-          <div class="form-wrapper">
-            <input type="text" placeholder="Phone Number" id="mobile1" formControlName="mobile" class="form-control" />
+          <input type="text" placeholder="Phone Number" id="mobile1" formControlName="mobile" class="form-control" />
+        </div>
+      </div>
 
-            <div *ngIf="Mobile.touched && Mobile.errors">
-              <div
-                class="form-text text-danger"
-                *ngIf="Mobile.errors['required']"
-              >
-                phone number is Required
-              </div>
-              <div
-                class="form-text text-danger"
-                *ngIf="Mobile.errors['pattern']"
-              >
-                Invalid Mobile Number
-              </div>
-            </div>
-          </div>
-          <div class="form-wrapper">
-            <input type="password" placeholder="Password" id="pwd1" formControlName="pwd" class="form-control" />
-
-            <div
-              class="form-text text-danger"
-              *ngIf="(PWD.errors?.['required'] && (passwordBlurred || PWD.dirty || PWD.touched)) && (RPWD.dirty || RPWD.touched)"
-            >
+      <div class="container">
+        <div class="input-wrapper">
+          <div class="validation" [class.visible]="PWD.touched && PWD.invalid">
+            <div class="form-text error-message" *ngIf="PWD.errors?.['required']">
               Password is Required
             </div>
-            <div
-              class="form-text text-danger"
-              *ngIf="((PWD.errors?.['minlength'] || PWD.errors?.['maxlength']) && (passwordBlurred || PWD.dirty || PWD.touched)) && (RPWD.dirty || RPWD.touched)"
-            >
+            <div class="form-text error-message"
+              *ngIf="((PWD.errors?.['minlength'] || PWD.errors?.['maxlength']) && (PWD.dirty || PWD.touched)) && (RPWD.dirty || RPWD.touched)">
               Password should be at least 6 and at the max 15 characters long.
             </div>
-            <div
-              class="form-text text-danger"
-              *ngIf="RPWD.dirty || RPWD.touched"
-            >
-              <div *ngIf="invalidRPWD && passwordBlurred">
-                Password doesn't match with Repeat Password!
-              </div>
-            </div>
-            <div class="form-wrapper">
-              <input type="password" placeholder="Repeat Password" id="rpwd1" formControlName="rpwd" class="form-control" />
-
-              <div
-                class="form-text text-danger"
-                *ngIf="RPWD.errors?.['required'] && (RPWD.dirty || RPWD.touched)"
-              >
-                Repeat Password is Required
-              </div>
-              <div class="form-text text-danger" *ngIf="invalidRPWD">
-                Doesn't match with Password!
-              </div>
-
-              <i class="zmdi zmdi-lock"></i>
-            </div>
-            <div>
-              <button
-                type="submit"
-                class="d-block mx-auto btn btn-dark"
-                [disabled]="registerForm.invalid"
-              >
-                Create Account
-              </button>
-            </div>
-
-            <div class="mt-3 text-center"></div>
-            <div class="mt-3 text-right"></div>
           </div>
-        </form>
+          <input type="password" placeholder="Password" id="pwd1" formControlName="pwd" class="form-control" />
+        </div>
+
+        <div class="input-wrapper">
+          <div class="validation" [class.visible]="RPWD.touched && RPWD.invalid">
+            <div class="form-text error-message" *ngIf="RPWD.errors?.['required']">
+              Repeat Password is Required
+            </div>
+            <div class="form-text error-message" *ngIf="invalidRPWD">
+              Doesn't match with Password!
+            </div>
+          </div>
+          <input type="password" placeholder="Repeat Password" id="rpwd1" formControlName="rpwd" class="form-control" />
+        </div>
       </div>
-    </div>
-  </body>
-</html>
+
+      <div class="text-center">
+        <button type="submit" class="d-block mx-auto mb-4 btn btn-dark" [disabled]="registerForm.invalid">
+          Create Account
+        </button>
+        <a routerLink="/login">Already have an account?</a>
+      </div>
+    </form>
+
+  </div>
+</div>

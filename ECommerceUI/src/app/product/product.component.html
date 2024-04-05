@@ -1,12 +1,10 @@
 <div class="grid-view" *ngIf="view === 'grid'">
     <div class="card text-center">
-      <div class="card-header fw-bold fs-5 text-success">
-      </div>
+      <h5 class="card-title title"> {{product.title}} </h5>
       <div class="overflow-hidden d-flex justify-content-center align-items-center">
-        <img  src="https://localhost:7149{{product.image}}" class="card-img-top img-fluid" alt="Product Image" OpenProductDetails [productId]="product.id">
+        <img  src="https://localhost:7149{{product.image}}" class="card-img-top " alt="Product Image" OpenProductDetails [productId]="product.id">
       </div>
       <div class="card-body">
-        <h5 class="card-title title"> {{product.title}} </h5>
         <h6 class="card-subtitle my-2 text-primary"> {{product.quantity}} products are available. </h6>
         <p class="card-text description"> {{product.description}} </p>
       </div>

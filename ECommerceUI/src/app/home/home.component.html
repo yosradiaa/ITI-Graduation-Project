@@ -18,17 +18,19 @@
     </div>
   </div>
   <div class="container my-container mx-auto">
-    <div class="row">
-        <div class="col-md-4 col-sm-6" *ngFor="let product of products.slice(0, 3)">
-            <div class="card mb-3" OpenProductDetails [productId]="product.id"> <!-- Apply OpenProductDetailsDirective and pass product ID -->
+    <div class="row row-cols-1 col-12 row-cols-md-4 g-3 ">
+        <div class="col-md-3 col-sm-6" *ngFor="let product of products.slice(0, 4)">
+            <div class="card mb-3" OpenProductDetails [productId]="product.id"> 
+              <div class="imgdiv">
                 <img  src="https://localhost:7149{{product.image}}" class="card-img-top product-image" alt="Product Image">
+              </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ product.title }}</h5>
-                    <p class="card-text">{{ product.description }}</p>
-                    <p class="card-text">Price: {{ product.price }}</p>
-                    <button class="btn btn-primary btn-sm" (click)="addToCart(product)" [disabled]="!utilityService.isLoggedIn()">
+                    <!-- <p class="card-text">{{ product.description }}</p> -->
+                    <p class="card-text">Price: {{ product.price }}$</p>
+                    <button class="btn button" (click)="addToCart(product)" [disabled]="!utilityService.isLoggedIn()">
                       Add to Cart
-                      <span *ngIf="!utilityService.isLoggedIn()" class="btn btn-primary btn-sm"> (Please login first to add to cart)</span>
+                      <span *ngIf="!utilityService.isLoggedIn()" class="btn button text-muted"> (Login First)</span>
                     </button>
                  <br>
                 </div>
@@ -103,17 +105,70 @@
   <div class="container">
     <div class="row">
       <div class="col-6">
-        <img src="./assets/Images/chair.png" />
+        <img src="./assets/Images/chair.png" alt="" />
       </div>
       <div class="col-6 align-self-center justify-content-center">
         <h3 class="fw-bold">NEW EXPERIENCE IS GOING TO UNLOCK</h3>
         <P class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt eveniet itaque porro, molestias,
           labore voluptates hic vel ad atque totam repellat, modi in praesentium temporibus id enim corporis excepturi.
         </P>
-        <button type="button" class="btn button text-center" routerLink="/randomProduct">Shop Now</button>
+        <button type="button" class="btn button text-center fw-bold" routerLink="/randomProduct">Shop Now</button>
       </div>
     </div>
   </div>
 </section>
+<section>
+  <div class="welcome-container">
+    <h2 class="fw-bold">EXPLORE NOW</h2>
+    <div class="welcomeDiv row">
+      <p class="text-center py-3">Explore our website to discover a world of possibilities.</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+<div class="row">
+    <div class="col-md-6 col-sm-6" *ngFor="let product of products.slice(0, 4)">
+      <div class="card mb-3" OpenProductDetails [productId]="product.id"> 
+        <div class="imgdiv">
+          <img  src="https://localhost:7149{{product.image}}" class="card-img-top product-image" alt="Product Image">
+        </div>
+          <div class="card-body">
+              <h5 class="card-title">{{ product.title }}</h5>
+              <!-- <p class="card-text">{{ product.description }}</p> -->
+              <p class="card-text">Price: {{ product.price }}$</p>
+              <button class="btn button" (click)="addToCart(product)" [disabled]="!utilityService.isLoggedIn()">
+                Add to Cart
+                <span *ngIf="!utilityService.isLoggedIn()" class="btn button text-muted"> (Login First)</span>
+              </button>
+           <br>
+          </div>
+      </div>
+  </div>
+    
+  </div>
 
+      </div>
+        <div class="col-md-6 col-sm-6 long" *ngFor="let product of products.slice(10, 11)">
+          <div class="card mb-3" OpenProductDetails [productId]="product.id"> 
+            <div class="imgdiv">
+              <img  src="https://localhost:7149{{product.image}}" class="card-img-top product-image" alt="Product Image">
+            </div>
+              <div class="card-body">
+                  <h5 class="card-title mt-3">{{ product.title }}</h5>
+                  <p class="card-text text-center">{{ product.description }}</p>
+                  <p class="card-text">Price: {{ product.price }}$</p>
+                  <button class="btn button my-2" (click)="addToCart(product)" [disabled]="!utilityService.isLoggedIn()">
+                    Add to Cart <br>
+                    <span *ngIf="!utilityService.isLoggedIn()" class="btn button text-muted"> (Login First)</span>
+                  </button>
+               <br>
+              </div>
+        
+      </div>
+  
+    </div>
+    </div>
+  </div>
+</section>
 

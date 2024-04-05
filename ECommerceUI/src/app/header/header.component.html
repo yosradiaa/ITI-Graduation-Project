@@ -8,7 +8,7 @@
             <button type="button" class="btn btn-outline-light" routerLink="/home">
                 Home
             </button>
-            <button type="button" class="btn btn-outline-light" routerLink="/contact">Contact</button>
+            <button type="button" class="btn btn-outline-light" routerLink="/contact">Message</button>
             <div class="btn-group" role="group">
                 <button type="button" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
                     Categories
@@ -33,12 +33,12 @@
         </div>
 
         <div class="btn-group btn-group-lg me-2" role="group">
-            <button type="button" class="btn btn-outline-light"  routerLink="/login"
-                (click)="openModal('login')" *ngIf="!utilityService.isLoggedIn()">
+            <button type="button" class="btn btn-outline-light" routerLink="/login" (click)="openModal('login')"
+                *ngIf="!utilityService.isLoggedIn()">
                 Login
             </button>
-            <button type="button" class="btn btn-outline-light"  routerLink="/registerr"
-                (click)="openModal('register')" *ngIf="!utilityService.isLoggedIn()">
+            <button type="button" class="btn btn-outline-light" routerLink="/registerr" (click)="openModal('register')"
+                *ngIf="!utilityService.isLoggedIn()">
                 Register
             </button>
             <!-- <button type="button" class="btn btn-outline-light" *ngIf="utilityService.isLoggedIn()">

@@ -16,7 +16,7 @@ import { UtilityService } from '../services/utility.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  @ViewChild('exampleModal') modal!: ElementRef; // Initialize modal property
+  @ViewChild('exampleModal') modal!: ElementRef;
 
   loginForm!: FormGroup;
   emailFocused: boolean = false;
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
     }
   }
   openModal() {
-    this.renderer.addClass(document.body, 'modal-open'); // Add 'modal-open' class to body
+    this.renderer.addClass(document.body, 'modal-open'); 
   }
   get Email() {
     return this.loginForm.get('email');

@@ -85,7 +85,7 @@ export class RegisterrComponent implements OnInit {
           Validators.maxLength(15),
         ],
       ],
-      rpwd: [''],
+      rpwd: ['', [Validators.required]],
     });
 
     this.registerForm.get('rpwd')?.valueChanges.subscribe((value) => {

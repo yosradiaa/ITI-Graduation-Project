@@ -34,10 +34,12 @@ img:hover {
 .card-footer span {
     background: none;
 }
-.list-view .card{
+
+.list-view .card {
     padding: 20px 0;
     border: 1px solid #ccc;
 }
+
 .list-view .title {
     height: 50px;
     overflow: hidden;
@@ -61,7 +63,11 @@ img:hover {
 }
 
 .grid-view .card-title {
-    color: #fff;
+    color: #000000;
+}
+
+.grid-view img {
+    object-fit: cover;
 }
 
 button {
