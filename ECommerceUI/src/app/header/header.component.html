@@ -33,11 +33,11 @@
         </div>
 
         <div class="btn-group btn-group-lg me-2" role="group">
-            <button type="button" class="btn btn-outline-light"  data-bs-toggle="modal" data-bs-target="#generalmodal"
+            <button type="button" class="btn btn-outline-light"  routerLink="/login"
                 (click)="openModal('login')" *ngIf="!utilityService.isLoggedIn()">
                 Login
             </button>
-            <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#generalmodal"
+            <button type="button" class="btn btn-outline-light"  routerLink="/registerr"
                 (click)="openModal('register')" *ngIf="!utilityService.isLoggedIn()">
                 Register
             </button>

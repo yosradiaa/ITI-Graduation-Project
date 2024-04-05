@@ -445,25 +445,25 @@ namespace ECommerce.API.DataAccess
         }
 
 
-        public bool RemoveCartItem(int cartItemId)
-        {
-            using (SqlConnection connection = new SqlConnection(dbconnection))
-            {
-                SqlCommand command = new SqlCommand
-                {
-                    Connection = connection
-                };
+        //public bool RemoveCartItem(int cartItemId)
+        //{
+        //    using (SqlConnection connection = new SqlConnection(dbconnection))
+        //    {
+        //        SqlCommand command = new SqlCommand
+        //        {
+        //            Connection = connection
+        //        };
 
-                connection.Open();
-                string query = "DELETE FROM CartItems WHERE CartItemId = @CartItemId;";
-                command.CommandText = query;
-                command.Parameters.AddWithValue("@CartItemId", cartItemId);
+        //        connection.Open();
+        //        string query = "DELETE FROM CartItems WHERE CartItemId = @CartItemId;";
+        //        command.CommandText = query;
+        //        command.Parameters.AddWithValue("@CartItemId", cartItemId);
 
-                int rowsAffected = command.ExecuteNonQuery();
+        //        int rowsAffected = command.ExecuteNonQuery();
 
-                return rowsAffected > 0;
-            }
-        }
+        //        return rowsAffected > 0;
+        //    }
+        //}
 
 
 
@@ -1366,6 +1366,28 @@ namespace ECommerce.API.DataAccess
             else
             {
                 return new ResultFile() { Successed = false, ErrorMessage = "Error, allowed extensions is jpg , jpeg , png" };
+            }
+        }
+
+
+
+        public bool RemoveCartItem(int cartItemId)
+        {
+            using (SqlConnection connection = new SqlConnection(dbconnection))
+            {
+                SqlCommand command = new SqlCommand
+                {
+                    Connection = connection
+                };
+
+                connection.Open();
+                string query = "DELETE FROM CartItems WHERE CartItemId = @CartItemId;";
+                command.CommandText = query;
+                command.Parameters.AddWithValue("@CartItemId", cartItemId);
+
+                int rowsAffected = command.ExecuteNonQuery();
+
+                return rowsAffected > 0;
             }
         }
 
