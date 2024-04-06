@@ -176,11 +176,6 @@ export class NavigationService {
   }
 
 
-  getProductById(productId: number): Observable<Product> {
-    const url = `${this.baseurl}GetProduct/${productId}`;
-    return this.http.get<Product>(url);
-  }
-
 
   updateProduct(product: Product): Observable<any> {
     return this.http.put<any>(`${this.baseurl}EditProduct/${product.id}`, product);
@@ -220,24 +215,15 @@ export class NavigationService {
   }
 
 
-  editProduct(id: number, product: Product, file?: File): Observable<any> {
-    const formData = new FormData();
-    if (file) {
-      formData.append('file', file);
-    }
-    formData.append('Title', product.title);
-    formData.append('Description', product.description);
-    formData.append('ProductCategory', JSON.stringify(product.productCategory));
-    formData.append('Offer', JSON.stringify(product.offer));
-    formData.append('Price', product.price.toString());
-    formData.append('Quantity', product.quantity.toString());
-
-    return this.http.post<any>(`${this.baseurl}EditProduct/${id}`, formData)
-      .pipe(
-        catchError(error => {
-          return throwError(error);
-        })
-      );
+  
+  getProductById(productId: number): Observable<Product> {
+    const url = `${this.baseurl}GetProduct/${productId}`;
+    return this.http.get<Product>(url);
+  }
+  
+  editProduct(productId: number, formData: FormData) {
+    const url = `${this.baseurl}EditProduct/${productId}`;
+    return this.http.post(url, formData);
   }
 }
 

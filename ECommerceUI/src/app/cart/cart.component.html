@@ -31,22 +31,23 @@
           </div>
       </div>
       <div class="col-md-6">
-          <div class="row">
-              <div class="col-12">
-                  <h4 class="mb-4">Cart Items</h4>
-              </div>
-              <div class="col-6" *ngFor="let cartItem of usersCart.cartItems">
-                  <div class="card items mb-3">
-                      <app-product [view]="'currcartitem'" [product]="cartItem.product"></app-product>
-                      <div class="card-footer d-flex justify-content-between align-items-center">
-                          <span class="text-danger fw-bold">{{cartItem.product.price}}</span>
-                          <button class="btn btn-danger" (click)="removeCartItem(cartItem)">Remove</button>
-                      </div>
-                  </div>
-              </div>
+        <div class="row">
+          <div class="col-12">
+            <h4 class="mb-4">Cart Items</h4>
           </div>
+          <div class="col-6" *ngFor="let cartItem of uniqueCartItems">
+            <div class="card items mb-3">
+              <app-product [view]="'currcartitem'" [product]="cartItem.product"></app-product>
+              <div class="card-footer d-flex justify-content-between align-items-center">
+                <span class="text-danger fw-bold">{{cartItem.product.price}}</span>
+                <span class="text-danger fw-bold">{{cartItem.quantity}}</span> <!-- Display quantity -->
+                <button class="btn btn-danger" (click)="removeCartItem(cartItem)">Remove</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-  </div>
+
 
   <!-- <h3 class="text-center border py-2 mb-4 mt-5 my-rounded-corner">Previous Carts</h3>
 

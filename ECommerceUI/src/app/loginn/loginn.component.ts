@@ -36,7 +36,7 @@ export class LoginnComponent implements OnInit {
       const password = this.PWD?.value;
 
       if (email === 'admin@gmail.com' && password === '123456') {
-        this.router.navigate(['/admin/user-management']);
+        this.router.navigate(['/admin/dashboard']);
         return;
       }
       this.navigationService

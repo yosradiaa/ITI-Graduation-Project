@@ -202,10 +202,9 @@ namespace ECommerce.API.Controllers
 
                         if (result.Successed)
                         {
-
                             productDto.Image = result.Url;
 
-                            //if already have image
+                      
                             if (!string.IsNullOrEmpty(product.Image))
                             {
                                 dataAccess.RemoveFile(product.Image);
@@ -214,7 +213,6 @@ namespace ECommerce.API.Controllers
                         }
                         else
                         {
-                            //Handle Response
                             return BadRequest("Something is wrong..!!");
                         }
 
@@ -229,6 +227,9 @@ namespace ECommerce.API.Controllers
                 {
                     return BadRequest("something is wrong..!!");
                 }
+
+
+
 
                 ProductCategory category = dataAccess.GetProductCategory(productDto.ProductCategory);
                 Offer offer = dataAccess.GetOffer(productDto.Offer);

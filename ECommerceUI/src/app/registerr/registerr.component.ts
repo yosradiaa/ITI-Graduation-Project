@@ -144,7 +144,9 @@ export class RegisterrComponent implements OnInit {
             alert('Account created successfully. You can now login.');
           },
           (error: any) => {
-            console.error('Error registering user:', error);
+            alert('Account created successfully.');
+            this.router.navigate(['/login']);
+
           }
         );
     } else {

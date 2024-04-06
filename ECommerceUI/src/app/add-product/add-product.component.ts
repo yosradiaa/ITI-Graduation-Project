@@ -1,5 +1,5 @@
 import { NavigationService } from './../services/navigation.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product, Category, Offer } from '../models/models';
 import { HttpHeaders } from '@angular/common/http';
@@ -38,8 +38,11 @@ export class AddProductComponent implements OnInit {
   productToEdit: Product | null = null;
   showAddForm: boolean = false;
   imageFile: File | null = null;
+  selectedFile: File | undefined;
+  editingProductId: number | null = null;
+  formBuilder: any;
 
-  constructor(private http: HttpClient , private router: Router, private NavigationService: NavigationService) { }
+  constructor(private http: HttpClient, private router: Router, private NavigationService: NavigationService) { }
 
   addedProducts: Product[] = [];
 
@@ -89,22 +92,6 @@ export class AddProductComponent implements OnInit {
       );
   }
 
-  onSubmit(productForm: FormGroup): void {
-    console.log(productForm);
-    if(productForm.valid){
-      const productFormValues = productForm.value;
-      console.log(productFormValues);
-      const formData = new FormData();
-      for (const key in productFormValues) {
-        formData.append(key , productFormValues[key]);
-      }
-      this.NavigationService.addProduct(formData).subscribe((response)=> {
-        console.log(response);
-        this.fetchProducts();
-        this.resetForm();
-      })
-    }
-  }
 
 
   onImageSelected(event: any): void {
@@ -114,29 +101,7 @@ export class AddProductComponent implements OnInit {
   saveImageLocally(imagePath: string): void {
   }
 
-  public productForm:FormGroup = new FormGroup({
-    title:new FormControl("" , [Validators.required]),
-    price:new FormControl("" , [Validators.required]),
-    quantity:new FormControl("" , [Validators.required]),
-    offer:new FormControl("" , [Validators.required]),
-    productCategory:new FormControl("" , [Validators.required]),
-    description:new FormControl("" , [Validators.required]),
-    file:new FormControl("" , [Validators.required]),
-  });
 
-
-  public HandleFile(files:any){
-    if(files?.length > 0){
-
-      const updatedFile = <File>files[0];
-      this.productForm.controls["file"].setValue(updatedFile);
-    }
-    else
-    {
-      this.productForm.controls["file"].setValue("");
-    }
-
-  }
 
 
   deleteProduct(productId: number): void {
@@ -186,6 +151,7 @@ export class AddProductComponent implements OnInit {
       image: '',
     };
     this.imageFile = null;
+
   }
 
 
@@ -200,27 +166,113 @@ export class AddProductComponent implements OnInit {
     this.resetForm();
   }
 
-  editProduct(productId: number): void {
-    const selectedProduct = this.addedProducts.find(product => product.id === productId);
-    if (selectedProduct) {
-      let file: File | undefined = undefined;
-      if (this.imageFile instanceof File) {
-        file = this.imageFile;
-      }
 
-      this.NavigationService.editProduct(selectedProduct.id, selectedProduct, file)
-        .subscribe(
+
+  public productForm: FormGroup = new FormGroup({
+    id: new FormControl(0),
+    title: new FormControl("", [Validators.required]),
+    price: new FormControl("", [Validators.required]),
+    quantity: new FormControl("", [Validators.required]),
+    offer: new FormControl("", [Validators.required]),
+    productCategory: new FormControl("", [Validators.required]),
+    description: new FormControl("", [Validators.required]),
+    file: new FormControl(null, []),
+  });
+
+  scrollToEdit(editSection: HTMLElement) {
+    editSection.scrollIntoView({ behavior: 'smooth' });
+  }
+
+
+  fetchProductData(id: number) {
+    this.editingProductId = id;
+    this.NavigationService.getProductById(id).subscribe(
+      (productData: Product) => {
+        this.productForm.patchValue({
+          id: productData.id,
+          title: productData.title,
+          productCategory: productData.productCategory ? productData.productCategory.id : null,
+          offer: productData.offer ? productData.offer.id : null,
+          price: productData.price,
+          quantity: productData.quantity,
+          description: productData.description,
+          file: productData.image
+        });
+      },
+      error => {
+        console.error('Error fetching product data:', error);
+      }
+    );
+  }
+
+
+  submitForm(): void {
+    if (this.productForm.valid) {
+      if (this.editingProductId) {
+        console.log(this.editingProductId);
+        const formData = new FormData();
+        console.log('Title value:', this.productForm.get('title')?.value);
+        console.log('Description value:', this.productForm.get('description')?.value);
+        console.log('Price value:', this.productForm.get('price')?.value);
+        console.log('Quantity value:', this.productForm.get('quantity')?.value);
+        console.log('Category value:', this.productForm.get('productCategory')?.value);
+        console.log('Offer value:', this.productForm.get('offer')?.value);
+        console.log('Image value:', this.productForm.get('file')?.value);
+
+        const productFormValues = this.productForm.value;
+        for (const key in productFormValues) {
+          formData.append(key, productFormValues[key]);
+        }
+        formData.forEach((value, key) => {
+          console.log(key, value);
+        });
+        const productRow = document.getElementById('product_' + this.editingProductId);
+            if (productRow) {
+              productRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+        this.NavigationService.editProduct(this.editingProductId, formData).subscribe(
           response => {
-            console.log(response);
+            console.log('Product edited successfully!', response);
+            this.productForm.reset();
+            this.editingProductId = null;
+            this.selectedFile = undefined;
+            
           },
           error => {
-            console.error(error);
+            console.error('Error editing product:', error);
           }
         );
+      } else {
+        console.error('No product is being edited.');
+      }
+    } else {
+      console.error('Form is invalid. Please fill all required fields.');
+    }
+  }
+
+
+  public HandleFile(files: any): void {
+    if (files?.length > 0) {
+      const updatedFile = <File>files[0];
+      this.productForm.controls["file"].setValue(updatedFile);
+    } else {
+      this.productForm.controls["file"].setValue("");
     }
   }
 
 
 
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    console.log('Selected file:', this.selectedFile);
+  }
+
+
 
 }
+
+
+
+
+

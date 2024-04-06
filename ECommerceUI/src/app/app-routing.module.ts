@@ -16,9 +16,11 @@ import { ContactComponent } from './contact/contact.component';
 import { RandomProductsComponent } from './random-products/random-products.component';
 import { LoginnComponent } from './loginn/loginn.component';
 import { RegisterrComponent } from './registerr/registerr.component';
-
+import { AddProdComponent } from './add-prod/add-prod.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
+ 
   { path: 'home', component: HomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'products', component: ProductsComponent },
@@ -28,15 +30,17 @@ const routes: Routes = [
   { path: 'login', component: LoginnComponent },
   { path: 'registerr', component: RegisterrComponent },
   { path: 'randomProduct', component: RandomProductsComponent },
-  { path: 'admin', component: AdminDashboardComponent },
+  { path: 'admin', component: AdminComponent },
+  
   {
     path: 'admin',
-    component: AdminDashboardComponent,
+    component: AdminComponent,
     children: [
+      { path: 'dashboard', component: AdminDashboardComponent },
       { path: 'user-management', component: UserManagementComponent },
       { path: 'admin-order', component: AdminOrderComponent },
       { path: 'add-product', component: AddProductComponent },
-
+      { path: 'add-prod', component: AddProdComponent },
     ]
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },

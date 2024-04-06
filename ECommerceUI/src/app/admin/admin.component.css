@@ -100906,8 +100906,7 @@ div.code-toolbar>.toolbar span:focus {
 }
 
 .israa {
-  /* background-color: gray !important; */
-  color: gray!important;
+  background-color: gray !important;
   width: 100% !important;
 }
 .israa img{
@@ -100916,18 +100915,42 @@ div.code-toolbar>.toolbar span:focus {
 .israatxt{
   margin-left: 400px;
 }
-.israatxt h1{
-  color: black;
-}
 .headerdiv{
   background-color: gray !important;
   color: #fff;
   margin-top: -90px;
+  margin-left: -30px;
 }
-p{
-color: black!important;
+.headerdiv h2{
+  margin-left: 70px;
+  font-weight: bold;
+  font-size: 20px;
+  width: 700px!important;
 }
-.israa .israaimg{
-position: absolute;
-width: 280px;
+.headerdiv button{
+  margin-left: 900px;
+  margin-top: 5px;
+}
+.contentisraa{
+width: 1000px!important;
+padding: 50px;
+background-color: #fff!important;
+}
+body{
+  background-color: #fff!important;
+}
+.israabtn{
+  background-color: lightgray!important;
+  color: #fff;
+}
+#sideBar{
+  background-color: gray!important;
+  margin-left: -16px;
+  margin-top: -2px;
+  color: #fff!important;
+  font-weight: bold!important;
+  font-size: 18px!important;
+}
+.israafooter{
+margin-left:
 }

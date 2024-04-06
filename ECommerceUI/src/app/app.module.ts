@@ -31,6 +31,10 @@ import { ContactComponent } from './contact/contact.component';
 import { RandomProductsComponent } from './random-products/random-products.component';
 import { LoginnComponent } from './loginn/loginn.component';
 import { RegisterrComponent } from './registerr/registerr.component';
+import { AddProdComponent } from './add-prod/add-prod.component';
+import { AdminComponent } from './admin/admin.component';
+
+
 
 @NgModule({
   declarations: [
@@ -58,6 +62,8 @@ import { RegisterrComponent } from './registerr/registerr.component';
     RandomProductsComponent,
     LoginnComponent,
     RegisterrComponent,
+    AddProdComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
