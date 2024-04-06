@@ -60,7 +60,9 @@ export interface Review {
 export interface CartItem {
   id: number;
   product: Product;
+  quantity: number; // Add the quantity property
 }
+
 
 export interface Cart {
   id: number;
