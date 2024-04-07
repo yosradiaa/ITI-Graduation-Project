@@ -5,10 +5,6 @@ textarea {
 #contact h3{
     font-weight: bold;
 }
-#contact{
-margin-bottom: 30px;
-margin-top: -20px;
-}
 
 #contact form input,
 textarea {
@@ -92,9 +88,9 @@ textarea {
 
 .imgContact {
     position: absolute;
-    top: 22%;
+    top: 24%;
     left: 1%;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('/assets/Images/furn.jpeg');
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url('/assets/Images/2.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

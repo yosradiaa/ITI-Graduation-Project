@@ -84,6 +84,14 @@ export interface PaymentMethod {
   reason: string;
 }
 
+
+export interface Contact {
+  contactId: number;
+  userId: number;
+  message: string;
+  sentAt: Date;
+  user: User;
+}
 export interface Payment {
   id: number;
   user: User;

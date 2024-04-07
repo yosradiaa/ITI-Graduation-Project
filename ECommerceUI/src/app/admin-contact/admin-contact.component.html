@@ -1,0 +1,21 @@
+<div class="container">
+  <div *ngIf="contacts.length > 0">
+      <h2>All Messages</h2>
+
+    <div *ngIf="contacts.length === 0">
+      <p>No contacts found.</p>
+    </div>
+    <button class="btn btn-outline-success text-light my-3 w-100" (click)="sortContacts()">Sort Contacts (Latest)</button>
+    <div class="contact-list container justify-content-center">
+      <div class="card text-bg-success mb-3 hover-scale" *ngFor="let contact of contacts">
+        <div class="card-header fw-bold">{{ contact.user.firstName }} {{ contact.user.lastName }}</div>
+        <div class="card-body">
+          <p class="card-text">Email: {{ contact.user.email }}</p>
+          <p class="card-text">Mobile: {{ contact.user.mobile }}</p>
+          <p class="card-text">Address: {{ contact.user.address }}</p>
+          <p class="card-text">Sent At: {{ contact.sentAt}}</p>
+          <h5 class="card-title">Message: {{ contact.message }}</h5>
+        </div>
+      </div>
+    </div>
+    </div>

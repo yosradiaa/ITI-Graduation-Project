@@ -1,35 +1,54 @@
 <section id="contact" class="py-5">
-    <div class="container">
-        <!-- <h2>CONTACT US</h2> -->
-        <div class="row">
-            <div class="col-5 imgContact">
-               
-            </div>
-            <div class="col-5">
-            </div>
-            <div class="col-10 row">
-                <form method="post" action="redirect.html" class="col-7">
-                    <input type="text" name="name" id="name" placeholder="FULL NAME" required />
-                    <input type="email" name="email" id="email" placeholder="EMAIL" required />
-                    <textarea placeholder="MESSAGE" required></textarea>
-                    <button type="submit">CONTACT US</button>
-                </form>
-                <div class="col-4">
-                     <div>
-                        <h3>MESSAGE</h3>
-                        <p>TEAM4@ITI.GOV.EG</p>
-                    </div> 
-                    <div>
-                        <h3>BASED ON</h3>
-                        <p>BENI-SUEF, EGYPT</p>
-                    </div>
-                    <div class="icons">
-                        <i class="fa-brands fa-facebook-f"></i>
-                        <i class="fa-brands fa-square-instagram"></i>
-                        <i class="fa-brands fa-twitter"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="container">
+      <!-- <h2>CONTACT US</h2> -->
+      <div class="row">
+          <div class="col-5 imgContact">
+
+          </div>
+          <div class="col-5">
+          </div>
+
+          <div class="col-10 row">
+              <form (submit)="submitContact($event)" class="col-7">
+                  <input type="text" name="name" id="name" [placeholder]="user ? (user.firstName + ' ' + user.lastName) : (showLoginMessage ? 'Please log in first' : 'FULL NAME')" required [value]="user ? user.firstName + ' ' + user.lastName : ''" readonly [disabled]="!user" />
+
+
+                  <input type="email" name="email" id="email" [placeholder]="user ? user.email : (showLoginMessage ? 'Please log in first' : 'EMAIL')" required [value]="user ? user.email : ''" readonly [disabled]="!user" />
+
+
+                  <textarea (input)="handleMessageInteraction()" name="message" id="message" #messageInput="ngModel" [(ngModel)]="message" placeholder="MESSAGE" required [disabled]="!user"></textarea>
+                  <div *ngIf="messageInput?.errors?.['required'] && (messageInput.dirty || messageInput.touched || hasInteractedWithMessage)" class="validation-error">
+                      <div *ngIf="messageInput?.errors?.['required']" class="spandiv">
+                          <span>Message is required</span>
+                      </div>
+                  </div>
+                  <button type="submit" (click)="toggleSuccessMessage()" >CONTACT US</button>
+                  <div class="notification" *ngIf="showLoginMessage">
+                      <span>Please Login to submit a contact.</span>
+                  </div>
+                  <div *ngIf="showSuccessMessage" class="success-message">
+                     <span> Contact submitted successfully!</span>
+                  </div>
+              </form>
+
+
+
+              <div class="col-4">
+                  <div>
+                      <h3>CONTACT</h3>
+                      <p>TEAM4@ITI.GOV.EG</p>
+                  </div>
+                  <div>
+                      <h3>BASED ON</h3>
+                      <p>BENI-SUEF, EGYPT</p>
+                  </div>
+                  <div class="icons">
+                      <i class="fa-brands fa-facebook-f"></i>
+                      <i class="fa-brands fa-square-instagram"></i>
+                      <i class="fa-brands fa-twitter"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </section>

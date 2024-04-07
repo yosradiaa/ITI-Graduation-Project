@@ -33,6 +33,7 @@ import { LoginnComponent } from './loginn/loginn.component';
 import { RegisterrComponent } from './registerr/registerr.component';
 import { AddProdComponent } from './add-prod/add-prod.component';
 import { AdminComponent } from './admin/admin.component';
+import { AdminContactComponent } from './admin-contact/admin-contact.component';
 
 
 
@@ -65,6 +66,7 @@ import { AdminComponent } from './admin/admin.component';
     RegisterrComponent,
     AddProdComponent,
     AdminComponent,
+    AdminContactComponent,
   ],
   imports: [
     BrowserModule,

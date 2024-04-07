@@ -18,9 +18,10 @@ import { LoginnComponent } from './loginn/loginn.component';
 import { RegisterrComponent } from './registerr/registerr.component';
 import { AddProdComponent } from './add-prod/add-prod.component';
 import { AdminComponent } from './admin/admin.component';
+import { AdminContactComponent } from './admin-contact/admin-contact.component';
 
 const routes: Routes = [
- 
+
   { path: 'home', component: HomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'products', component: ProductsComponent },
@@ -31,7 +32,7 @@ const routes: Routes = [
   { path: 'registerr', component: RegisterrComponent },
   { path: 'randomProduct', component: RandomProductsComponent },
   { path: 'admin', component: AdminComponent },
-  
+
   {
     path: 'admin',
     component: AdminComponent,
@@ -41,6 +42,7 @@ const routes: Routes = [
       { path: 'admin-order', component: AdminOrderComponent },
       { path: 'add-product', component: AddProductComponent },
       { path: 'add-prod', component: AddProdComponent },
+      { path: 'admin-contact', component: AdminContactComponent },
       // { path: 'admin-contact', component: ContactComponent },
     ]
   },

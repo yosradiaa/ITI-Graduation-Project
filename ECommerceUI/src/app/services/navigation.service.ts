@@ -9,6 +9,7 @@ import {
   Payment,
   PaymentMethod,
   User,
+  Contact,
 } from '../models/models';
 
 @Injectable({
@@ -215,18 +216,18 @@ export class NavigationService {
   }
 
 
-  
+
   getProductById(productId: number): Observable<Product> {
     const url = `${this.baseurl}GetProduct/${productId}`;
     return this.http.get<Product>(url);
   }
-  
+
   editProduct(productId: number, formData: FormData) {
     const url = `${this.baseurl}EditProduct/${productId}`;
     return this.http.post(url, formData);
   }
 
-  
+
   getCounts(): Observable<any> {
     return this.http.get<any>(`${this.baseurl}getCount`).pipe(
       catchError(error => {
@@ -234,6 +235,20 @@ export class NavigationService {
         throw error;
       })
     );
+  }
+
+
+
+  getContactsByUserId(userId: number): Observable<Contact> {
+    return this.http.get<Contact>(`${this.baseurl}GetContact/${userId}`);
+  }
+  getAllContacts(): Observable<Contact[]> {
+    return this.http.get<Contact[]>(`${this.baseurl}GetAllContacts`);
+  }
+
+
+  insertContact(contact: Contact): Observable<any> {
+    return this.http.post<number>(`${this.baseurl}InsertContact`, contact);
   }
 }
 
