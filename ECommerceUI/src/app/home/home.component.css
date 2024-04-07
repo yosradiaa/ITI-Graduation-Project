@@ -35,6 +35,7 @@
 
  .banner .bannerImg {
      width: 100%;
+     object-fit: cover;
  }
 
  .col-7 {
@@ -166,6 +167,7 @@
  #carouselExampleIndicators,
  #slider {
      background: none;
+     object-fit: cover;
  }
 
 
@@ -228,6 +230,7 @@
 
  .about img {
      width: 70%;
+     object-fit: cover;
  }
 
  /* img:hover {

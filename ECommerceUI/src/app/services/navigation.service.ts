@@ -225,5 +225,15 @@ export class NavigationService {
     const url = `${this.baseurl}EditProduct/${productId}`;
     return this.http.post(url, formData);
   }
+
+  
+  getCounts(): Observable<any> {
+    return this.http.get<any>(`${this.baseurl}getCount`).pipe(
+      catchError(error => {
+        console.error('An error occurred:', error);
+        throw error;
+      })
+    );
+  }
 }
 

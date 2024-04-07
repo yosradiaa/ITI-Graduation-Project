@@ -41,7 +41,7 @@ export class AddProductComponent implements OnInit {
   selectedFile: File | undefined;
   editingProductId: number | null = null;
   formBuilder: any;
-
+  showEditSection: boolean = false;
   constructor(private http: HttpClient, private router: Router, private NavigationService: NavigationService) { }
 
   addedProducts: Product[] = [];
@@ -180,12 +180,15 @@ export class AddProductComponent implements OnInit {
   });
 
   scrollToEdit(editSection: HTMLElement) {
-    editSection.scrollIntoView({ behavior: 'smooth' });
+    // editSection.scrollIntoView({ behavior: 'smooth' });
+    const yOffset = editSection.getBoundingClientRect().top + window.pageYOffset;
+    window.scrollTo({ top: yOffset, behavior: 'smooth' });
   }
 
 
   fetchProductData(id: number) {
     this.editingProductId = id;
+    this.showEditSection = true;
     this.NavigationService.getProductById(id).subscribe(
       (productData: Product) => {
         this.productForm.patchValue({
@@ -227,9 +230,9 @@ export class AddProductComponent implements OnInit {
           console.log(key, value);
         });
         const productRow = document.getElementById('product_' + this.editingProductId);
-            if (productRow) {
-              productRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+        if (productRow) {
+          productRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
 
         this.NavigationService.editProduct(this.editingProductId, formData).subscribe(
           response => {
@@ -237,10 +240,16 @@ export class AddProductComponent implements OnInit {
             this.productForm.reset();
             this.editingProductId = null;
             this.selectedFile = undefined;
-            
+            this.showEditSection = false;
+
           },
           error => {
-            console.error('Error editing product:', error);
+            // console.error('Error editing product:', error);
+            this.productForm.reset();
+            this.editingProductId = null;
+            this.selectedFile = undefined;
+            this.showEditSection = false;
+            this.fetchProducts();
           }
         );
       } else {
@@ -267,12 +276,4 @@ export class AddProductComponent implements OnInit {
     this.selectedFile = event.target.files[0];
     console.log('Selected file:', this.selectedFile);
   }
-
-
-
 }
-
-
-
-
-

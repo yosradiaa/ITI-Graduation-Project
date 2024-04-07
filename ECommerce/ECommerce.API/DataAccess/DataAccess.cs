@@ -1407,5 +1407,80 @@ namespace ECommerce.API.DataAccess
             }
         }
 
+        public int GetProductsCount()
+        {
+            return GetCount("SELECT COUNT(*) FROM Products");
+        }
+
+        public int GetUsersCount()
+        {
+            return GetCount("SELECT COUNT(*) FROM Users");
+        }
+
+        public int GetPendingOrdersCount()
+        {
+            return GetCount("SELECT COUNT(*) FROM Orders WHERE Status = 'Pending'");
+        }
+
+        public int GetContactsCount()
+        {
+            return GetCount("SELECT COUNT(*) FROM Contact");
+        }
+
+        private int GetCount(string query)
+        {
+            using (var connection = new SqlConnection(dbconnection))
+            {
+                using (var command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    return (int)command.ExecuteScalar();
+                }
+            }
+        }
+
+        public void DeleteUserAndRelatedData(int userId)
+        {
+            using (SqlConnection connection = new SqlConnection(dbconnection))
+            {
+                connection.Open();
+                using (SqlTransaction transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        
+                        SqlCommand deleteContactsCommand = new SqlCommand("DELETE FROM Contact WHERE UserId = @UserId", connection, transaction);
+                        deleteContactsCommand.Parameters.AddWithValue("@UserId", userId);
+                        deleteContactsCommand.ExecuteNonQuery();
+
+                        SqlCommand deleteOrdersCommand = new SqlCommand("DELETE FROM Orders WHERE UserId = @UserId", connection, transaction);
+                        deleteOrdersCommand.Parameters.AddWithValue("@UserId", userId);
+                        deleteOrdersCommand.ExecuteNonQuery();
+
+                        SqlCommand deleteReviewsCommand = new SqlCommand("DELETE FROM Reviews WHERE UserId = @UserId", connection, transaction);
+                        deleteReviewsCommand.Parameters.AddWithValue("@UserId", userId);
+                        deleteReviewsCommand.ExecuteNonQuery();
+
+                        SqlCommand deletePaymentsCommand = new SqlCommand("DELETE FROM Payments WHERE UserId = @UserId", connection, transaction);
+                        deletePaymentsCommand.Parameters.AddWithValue("@UserId", userId);
+                        deletePaymentsCommand.ExecuteNonQuery();
+
+                    
+                        SqlCommand deleteUserCommand = new SqlCommand("DELETE FROM Users WHERE UserId = @UserId", connection, transaction);
+                        deleteUserCommand.Parameters.AddWithValue("@UserId", userId);
+                        deleteUserCommand.ExecuteNonQuery();
+
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+
     }
 }

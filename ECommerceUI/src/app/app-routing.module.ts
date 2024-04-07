@@ -41,6 +41,7 @@ const routes: Routes = [
       { path: 'admin-order', component: AdminOrderComponent },
       { path: 'add-product', component: AddProductComponent },
       { path: 'add-prod', component: AddProdComponent },
+      // { path: 'admin-contact', component: ContactComponent },
     ]
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },

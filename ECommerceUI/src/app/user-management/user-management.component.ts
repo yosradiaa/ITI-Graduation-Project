@@ -1,5 +1,5 @@
+import { User } from './../models/models';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../models/models';
 import { UtilityService } from '../services/utility.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -137,10 +137,12 @@ export class UserManagementComponent implements OnInit {
           this.showEditUserForm = false;
           this.editUserForm.reset();
           console.log("User updated successfully.");
+          this.getAllUsers();
         } else {
           // If response is unsuccessful, revert the change in the local list
           this.users[index] = { ...this.selectedUser! };
           console.error("Failed to save user changes.");
+          this.getAllUsers();
         }
       });
     }
@@ -214,12 +216,14 @@ export class UserManagementComponent implements OnInit {
             this.refreshPage();
             this.users.push(newUser); // Manually add the new user to the users array
             this.resetAddUserForm(); // Reset the form
+            this.getAllUsers();
           } else {
             console.error('Error adding user: Unexpected server response');
           }
         },
         (error: any) => {
           console.error('Error adding user:', error);
+          this.getAllUsers();
         }
       );
     } else {

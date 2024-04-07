@@ -65,4 +65,18 @@ export class ProductDetailsComponent implements OnInit {
         }
       });
   }
+  showSuccess: boolean = false;
+  addToCartSuccess: boolean = false;
+  addToCart(product: Product) {
+    this.utilityService.addToCart(product);
+    this.addToCartSuccess = true;
+    setTimeout(() => {
+      this.addToCartSuccess = false;
+      this.showSuccess = true;
+      setTimeout(() => {
+        this.showSuccess = false;
+      }, 3000);
+    }, 0);
+  }
+
 }

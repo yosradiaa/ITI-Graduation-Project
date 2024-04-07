@@ -162,5 +162,4 @@ export class AddComponent implements OnInit {
   saveImageLocally(imagePath: string): void {
   }
 
-
 }

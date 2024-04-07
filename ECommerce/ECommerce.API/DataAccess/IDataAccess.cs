@@ -52,5 +52,10 @@ namespace ECommerce.API.DataAccess
         public Task<ResultFile> UploadFile(IFormFile formFile, string folderName);
         public void RemoveFile(string imageUrl);
         //bool RemoveCartItem(int cartItemId);
+        int GetProductsCount();
+        int GetUsersCount();
+        int GetPendingOrdersCount();
+        int GetContactsCount();
+        void DeleteUserAndRelatedData(int userId);
     }
 }

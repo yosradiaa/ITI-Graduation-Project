@@ -298,19 +298,7 @@ namespace ECommerce.API.Controllers
             }
         }
 
-        [HttpDelete("DeleteUser/{userId}")]
-        public IActionResult DeleteUser(int userId)
-        {
-            var result = dataAccess.DeleteUser(userId);
-            if (result)
-            {
-                return Ok("User deleted successfully");
-            }
-            else
-            {
-                return NotFound("User not found or failed to delete");
-            }
-        }
+     
 
         [HttpGet("GetPayment/{paymentId}")]
         public IActionResult GetPayment(int paymentId)
@@ -552,8 +540,61 @@ namespace ECommerce.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error adding product: {ex.Message}");
             }
         }
-    }
-    }
+
+
+
+        [HttpGet("getCount")]
+        public IActionResult GetCounts()
+        {
+            try
+            {
+                var counts = new
+                {
+                    products_count = dataAccess.GetProductsCount(),
+                    users_count = dataAccess.GetUsersCount(),
+                    pending_orders_count = dataAccess.GetPendingOrdersCount(),
+                    contacts_count = dataAccess.GetContactsCount()
+                };
+
+                return Ok(counts);
+            }
+            catch (Exception ex)
+            {
+              
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+
+
+        [HttpDelete("DeleteUser/{userId}")]
+        public IActionResult DeleteUser(int userId)
+        {
+            try
+            {
+                // Check if the user exists
+                var user = dataAccess.GetUser(userId);
+                if (user == null)
+                {
+                    return NotFound("User not found");
+                }
+
+                // Delete associated data
+                dataAccess.DeleteUserAndRelatedData(userId);
+
+                return Ok("User and associated data deleted successfully");
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+    
+
+}
+}
+   
 
 
 

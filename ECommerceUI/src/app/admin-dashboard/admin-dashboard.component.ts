@@ -1,3 +1,4 @@
+import { NavigationService } from './../services/navigation.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private NavigationService : NavigationService) { }
+  counts: any;
   ngOnInit(): void {
+    this.getCounts();
+  }
+  getCounts(): void {
+    this.NavigationService.getCounts()
+      .subscribe(
+        data => {
+          this.counts = data;
+          console.log('Counts:', this.counts);
+        },
+        error => {
+          console.error('Error:', error);
+        }
+      );
   }
 
 }

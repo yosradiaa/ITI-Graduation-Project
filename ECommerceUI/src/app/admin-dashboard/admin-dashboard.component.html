@@ -86,7 +86,7 @@
       
       
               <!-- card -->
-              <div class="report-card">
+              <div class="report-card" routerLink="/admin/add-product">
                 <div class="card">
                   <div class="card-body flex flex-col">
       
@@ -94,14 +94,14 @@
                     <div class="flex flex-row justify-between items-center">
                       <div class="h6 text-indigo-700 fad fa-shopping-cart"></div>
                       <span class="rounded-full text-white badge bg-teal-400 text-xs">
-                        15
+                        {{ counts?.products_count }}
                         <i class="fal fa-chevron-up ml-1"></i>
                       </span>
                     </div>
 
                     <div class="mt-8">
                       <h1 class="h5 num-4"></h1>
-                      <p>Total Products</p>
+                      <h3>Total Products</h3>
                     </div>
 
       
@@ -110,7 +110,7 @@
       
               </div>
 
-              <div class="report-card">
+              <div class="report-card" routerLink="/admin/admin-order">
                 <div class="card">
                   <div class="card-body flex flex-col">
       
@@ -118,14 +118,14 @@
                     <div class="flex flex-row justify-between items-center">
                       <div class="h6 text-red-700 fad fa-store"></div>
                       <span class="rounded-full text-white badge bg-red-400 text-xs">
-                        3
+                        {{ counts?.pending_orders_count }}
                         <i class="fal fa-chevron-down ml-1"></i>
                       </span>
                     </div>
 
                     <div class="mt-8">
                       <h1 class="h5 num-4"></h1>
-                      <p>Pending orders</p>
+                      <h3>Pending orders</h3>
                     </div>
 
       
@@ -134,49 +134,43 @@
       
               </div>
 
-              <div class="report-card">
+              <div class="report-card" routerLink="/admin/admin-contact">
                 <div class="card">
                   <div class="card-body flex flex-col">
       
 
                     <div class="flex flex-row justify-between items-center">
-                      <div class="h6 text-yellow-600 fad fa-sitemap"></div>
+                      <div class="h6 text-yellow-600 fad fa-envelope-open-text "></div>
+                      
                       <span class="rounded-full text-white badge bg-teal-400 text-xs">
-                        5
+                        {{ counts?.contacts_count }}
                         <i class="fal fa-chevron-up ml-1"></i>
                       </span>
                     </div>
-                 
                     <div class="mt-8">
                       <h1 class="h5 num-4"></h1>
-                      <p>Messages</p>
+                      <h3>Messages</h3>
                     </div>
-            
-      
                   </div>
                 </div>
-      
               </div>
          
       
       
        
-              <div class="report-card">
+              <div class="report-card" routerLink="/admin/user-management">
                 <div class="card">
                   <div class="card-body flex flex-col">
-      
-
                     <div class="flex flex-row justify-between items-center">
                       <div class="h6 text-green-700 fad fa-users"></div>
-                      <span class="rounded-full text-white badge bg-teal-400 text-xs">
-                        5
-                        <i class="fal fa-chevron-up ml-1"></i>
+                      <span class="rounded-full text-white badge bg-red-400 text-xs">
+                        {{ counts?.users_count }}
+                        <i class="fal fa-chevron-down ml-1"></i>
                       </span>
                     </div>
-
                     <div class="mt-8">
                       <h1 class="h5 num-4"></h1>
-                      <p>Total Users</p>
+                      <h3>Total Users</h3>
                     </div>
                   </div>
                 </div>

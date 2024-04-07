@@ -8,3 +8,14 @@
 .image-thumbnails>img:hover {
     transform: scale(1.08);
 }
+.notification {
+    display: none;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    margin-top: 10px;
+}
+
+.notification.success {
+    display: block;
+}

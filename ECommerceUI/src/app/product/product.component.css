@@ -21,7 +21,7 @@ img:hover {
 }
 
 .grid-view .card {
-    height: 500px;
+    height: 550px;
 }
 
 .grid-view .description,
@@ -67,7 +67,9 @@ img:hover {
 }
 
 .grid-view img {
-    object-fit: cover;
+     width: 200px; 
+    height: 200px; 
+    object-fit: cover!important; 
 }
 
 button {

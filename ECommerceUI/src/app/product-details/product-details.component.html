@@ -31,31 +31,33 @@
 
                 <div class="card-body">
                     <h1 class="card-title text-success">
-                        {{utilityService.applyDiscount(product.price,product.offer.discount)}}
+                        {{utilityService.applyDiscount(product.price,product.offer.discount)}}$
                         <span class="text-primary">-{{product.offer.discount}}%</span>
                     </h1>
                     <h4 class="card-subtitle text-danger text-decoration-line-through">
-                        {{product.price}}
+                        {{product.price}}$
                     </h4>
+                    <div class="card-body">
+                        <!-- <h5 class="card-text">Description</h5> -->
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-action"
+                                *ngFor="let item of product.description.split('. ')">
+                                {{item}}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="card-body">
                     <h6 class="card-subtitle my-2 text-primary"> {{product.quantity}} products are available. </h6>
                     <div class="d-grid gap-2">
                         <button type="button" class="btn btn-outline-success" [disabled]="!utilityService.isLoggedIn()"
-                                (click)="this.utilityService.addToCart(product)">Add to Cart
+                                (click)="this.utilityService.addToCart(product)"  (click)="addToCart(product)">Add to Cart
                             <span *ngIf="!utilityService.isLoggedIn()">(Login First)</span>
                         </button>
+                        <div *ngIf="showSuccess" class="notification success">Product added to cart successfully!</div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-text">Description</h5>
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-action"
-                            *ngFor="let item of product.description.split('. ')">
-                            {{item}}
-                        </li>
-                    </ul>
-                </div>
+           
             </div>
         </div>
     </div>
