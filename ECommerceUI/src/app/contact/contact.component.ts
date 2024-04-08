@@ -59,6 +59,8 @@ export class ContactComponent implements OnInit {
         sentAt: new Date(),
         user: this.user
       };
+      messageElement.value = '';
+      
 
 
       this.navigationService.insertContact(contact).pipe(
@@ -68,8 +70,8 @@ export class ContactComponent implements OnInit {
         })
       ).subscribe(
         response => {
-            console.log('Contact submitted successfully:', response);
-            this.message = '';
+          console.log('Contact submitted successfully:', response);
+          this.message = '';
         },
 
       );
@@ -79,26 +81,26 @@ export class ContactComponent implements OnInit {
 
   toggleSuccessMessage() {
     if (!this.message.trim()) {
-        console.error('Message is required.');
-        return;
+      console.error('Message is required.');
+      return;
     }
 
     if (!this.user) {
-        this.showLoginMessage = true;
-        return;
+      this.showLoginMessage = true;
+      return;
     }
     this.showSuccessMessage = true;
     // this.message = '';
     // this.hasInteractedWithMessage = false;
 
     setTimeout(() => {
-        this.showSuccessMessage = false;
+      this.showSuccessMessage = false;
     }, 3000);
-}
+  }
 
-handleMessageInteraction() {
+  handleMessageInteraction() {
     this.hasInteractedWithMessage = true;
-}
+  }
 
 
   checkLogin() {

@@ -22,8 +22,8 @@
       <td>{{ user.mobile }}</td>
       <td>{{ user.password }}</td>
       <td>
-        <button (click)="editUser(user)" class="btn btn-warning">Edit</button>
-        <button (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button>
+        <button (click)="editUser(user)" class="btn btn-success btn-sm">Edit</button>
+        <button (click)="deleteUser(user.id)" class="btn btn-danger btn-sm">Delete</button>
       </td>
     </tr>
   </tbody>
@@ -94,9 +94,10 @@
         Password is required.
       </div>
     </div>
-
-    <button type="submit" class="btn btn-dark">Save Changes</button>
-    <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+<div class="w-100 d-flex">
+    <button type="submit" class="btn btn-dark w-50">Save Changes</button>
+    <button type="button" class="btn btn-secondary w-50" (click)="cancelEdit()">Cancel</button>
+  </div>
   </form>
 </div>
 
@@ -170,7 +171,7 @@
         Paswword is required.
       </div>
     </div>
-    <div class="d-flex mt-3">
+    <div class="d-flex mt-3 w-100">
     <button type="submit" class="btn btn-dark w-50">Add User</button>
     <button type="button" class="btn btn-secondary w-50" (click)="cancelAddUser()">Cancel</button>
   </div>

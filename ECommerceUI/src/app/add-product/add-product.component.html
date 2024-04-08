@@ -49,89 +49,99 @@
 <br>
 <!-- *ngIf="showEditSection" -->
 <section class="my-5" #editSection id="edit">
-    <form [formGroup]="productForm" (ngSubmit)="submitForm()" enctype="multipart/form-data">
-      <h2>Edit Product</h2>
-      <br>
-      <div class="form-group mb-3">
-        <label for="title">title :</label>
-        <input formControlName="title" type="text" class="form-control" name="title" id="title" required
-          name="editTitle">
-        <div *ngIf="productForm.get('title')?.errors != null && productForm.get('title')?.touched"
+  <form [formGroup]="productForm" (ngSubmit)="submitForm()" enctype="multipart/form-data">
+    <h2>Edit Product</h2>
+    <br>
+    <div class="form-group mb-3">
+      <label for="title">title :</label>
+      <input formControlName="title" type="text" class="form-control" name="title" id="title" required name="editTitle">
+      
+        <div *ngIf="productForm.get('title')?.invalid && productForm.get('title')?.dirty"
           class="alert alert-danger mt-2">
-          <p *ngIf="productForm.get('title')?.errors?.['required']" class="m-0">Title is required..!!</p>
+          <p *ngIf="productForm.get('title')?.errors?.['required']" class="m-0">Title is required.</p>
+          <p *ngIf="productForm.get('title')?.errors?.['pattern']" class="m-0">Title must contain only letters and spaces.</p>
+          <p *ngIf="productForm.get('title')?.errors?.['minlength'] && !productForm.get('title')?.errors?.['pattern']" class="m-0">Title must be at least 3 characters.</p>
+          <p *ngIf="productForm.get('title')?.errors?.['maxlength']" class="m-0">Title cannot exceed 50 characters.</p>
+          
         </div>
+     
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="category">Category :</label>
+      <select formControlName="productCategory" class="form-control" name="productCategory" title="productCategory"
+        required>
+        <option value="">Select Category</option>
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.category }}
+        </option>
+      </select>
+      <div *ngIf="productForm.get('productCategory')?.errors != null && productForm.get('productCategory')?.touched"
+        class="alert alert-danger mt-2">
+        <p *ngIf="productForm.get('productCategory')?.errors?.['required']" class="m-0">Category is required..!!</p>
       </div>
-
-      <div class="form-group mb-3">
-        <label for="category">Category :</label>
-        <select formControlName="productCategory" class="form-control" name="productCategory" title="productCategory"
-          required>
-          <option value="">Select Category</option>
-          <option *ngFor="let category of categories" [value]="category.id">
-            {{ category.category }}
-          </option>
-        </select>
-        <div *ngIf="productForm.get('productCategory')?.errors != null && productForm.get('productCategory')?.touched"
-          class="alert alert-danger mt-2">
-          <p *ngIf="productForm.get('productCategory')?.errors?.['required']" class="m-0">Category is required..!!</p>
-        </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="offer">Offer :</label>
+      <select formControlName="offer" class="form-control" name="offer" title="offer" required>
+        <option value="">Select Offer</option>
+        <option *ngFor="let offer of offers" [value]="offer.id">
+          {{ offer.title}}
+        </option>
+      </select>
+      <div *ngIf="productForm.get('offer')?.errors != null && productForm.get('offer')?.touched"
+        class="alert alert-danger mt-2">
+        <p *ngIf="productForm.get('offer')?.errors?.['required']" class="m-0">Offer is required..!!</p>
       </div>
-      <div class="form-group mb-3">
-        <label for="offer">Offer :</label>
-        <select formControlName="offer" class="form-control" name="offer" title="offer" required>
-          <option value="">Select Offer</option>
-          <option *ngFor="let offer of offers" [value]="offer.id">
-            {{ offer.title}}
-          </option>
-        </select>
-        <div *ngIf="productForm.get('offer')?.errors != null && productForm.get('offer')?.touched"
-          class="alert alert-danger mt-2">
-          <p *ngIf="productForm.get('offer')?.errors?.['required']" class="m-0">Offer is required..!!</p>
-        </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="price">Price$ :</label>
+      <input formControlName="price" type="text" class="form-control" name="price" id="price" required>
+      <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.dirty"
+      class="alert alert-danger mt-2">
+      <p *ngIf="productForm.get('price')?.errors?.['required']" class="m-0">Price is required.</p>
+      <p *ngIf="productForm.get('price')?.errors?.['min']" class="m-0">Price must be at least 1000$.</p>
+      <p *ngIf="productForm.get('price')?.errors?.['pattern']" class="m-0">Price must be a number.</p>
+    </div>
+    </div>
+
+
+    <div class="form-group mb-3">
+      <label for="quantity">Quantity :</label>
+      <input formControlName="quantity" type="text" class="form-control" name="quantity" id="quantity" required>
+      <div *ngIf="productForm.get('quantity')?.invalid && productForm.get('quantity')?.dirty"
+        class="alert alert-danger mt-2">
+        <p *ngIf="productForm.get('quantity')?.errors?.['required']" class="m-0">Quantity is required.</p>
+        <p *ngIf="productForm.get('quantity')?.errors?.['min']" class="m-0">Quantity must be at least 1.</p>
+        <p *ngIf="productForm.get('quantity')?.errors?.['pattern']" class="m-0">Quantity must be a number.</p>
       </div>
+    </div>
 
-      <div class="form-group mb-3">
-        <label for="price">Price :</label>
-        <input formControlName="price" type="text" class="form-control" name="price" id="price" required>
-        <div *ngIf="productForm.get('price')?.errors != null && productForm.get('price')?.touched"
-          class="alert alert-danger mt-2">
-          <p *ngIf="productForm.get('price')?.errors?.['required']" class="m-0">Price is required..!!</p>
-        </div>
+    <div class="form-group mb-3">
+      <label for="description">Description :</label>
+      <textarea formControlName="description" class="form-control" id="description" name="description"
+        required></textarea>
+        <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.dirty"
+        class="alert alert-danger mt-2">
+        <p *ngIf="productForm.get('description')?.errors?.['required']" class="m-0">Description is required.</p>
+        <p *ngIf="productForm.get('description')?.errors?.['minlength'] && !productForm.get('description')?.errors?.['pattern']" class="m-0">Description must be at least 5 characters.</p>
+        <p *ngIf="productForm.get('description')?.errors?.['pattern']" class="m-0">Description must contain only letters and spaces.</p>
       </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <div class="input-group mb-3">
+
+        <input type="file" class="form-control" #file name="file" (change)="HandleFile(file.files)" id="file" required>
 
 
-      <div class="form-group mb-3">
-        <label for="quantity">Quantity :</label>
-        <input formControlName="quantity" type="text" class="form-control" name="quantity" id="quantity" required>
-        <div *ngIf="productForm.get('quantity')?.errors != null && productForm.get('quantity')?.touched"
-          class="alert alert-danger mt-2">
-          <p *ngIf="productForm.get('quantity')?.errors?.['required']" class="m-0">Quantity is required..!!</p>
-        </div>
+        <label class="input-group-text" for="file">Upload</label>
       </div>
+    </div>
 
-      <div class="form-group mb-3">
-        <label for="description">Description :</label>
-        <textarea formControlName="description" class="form-control" id="description" name="description"
-          required></textarea>
-        <div *ngIf="productForm.get('description')?.errors != null && productForm.get('description')?.touched"
-          class="alert alert-danger mt-2">
-          <p *ngIf="productForm.get('description')?.errors?.['required']" class="m-0">Description is required..!!</p>
-        </div>
-      </div>
-
-      <div class="form-group mb-3">
-        <div class="input-group mb-3">
-
-          <input type="file" class="form-control" #file name="file" (change)="HandleFile(file.files)" id="file"
-            required>
-
-
-          <label class="input-group-text" for="file">Upload</label>
-        </div>
-      </div>
-
-      <div class="btn-submit-action">
-        <button class="btn btn-secondary w-100" my-3 type="submit">Update Product</button>
-      </div>
-    </form>
+    <div class="btn-submit-action">
+      <button class="btn btn-secondary w-100" my-3 type="submit">Update Product</button>
+    </div>
+  </form>
 </section>

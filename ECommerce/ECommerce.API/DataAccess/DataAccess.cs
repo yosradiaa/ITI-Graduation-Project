@@ -23,7 +23,7 @@ namespace ECommerce.API.DataAccess
             this.configuration = configuration;
             this.webHostEnvironment = webHostEnvironment;
             dbconnection = this.configuration["ConnectionStrings:DB"];
-           
+
         }
 
         public Cart GetActiveCartOfUser(int userid)
@@ -342,7 +342,7 @@ namespace ECommerce.API.DataAccess
                     };
 
                     // Retrieve image data as byte array
-                    
+
 
                     var categoryId = (int)reader["CategoryId"];
                     product.ProductCategory = GetProductCategory(categoryId);
@@ -652,7 +652,7 @@ namespace ECommerce.API.DataAccess
                         Image = (reader["Image"] == DBNull.Value) ? string.Empty : reader["Image"].ToString()
                     };
 
-                
+
 
                     var categoryId = (int)reader["CategoryId"];
                     product.ProductCategory = GetProductCategory(categoryId);
@@ -1123,14 +1123,14 @@ namespace ECommerce.API.DataAccess
                         Price = (double)reader["Price"],
                         Quantity = (int)reader["Quantity"],
                         Image = (reader["Image"] == DBNull.Value) ? string.Empty : reader["Image"].ToString()
-                };
-                    
+                    };
+
                     products.Add(product);
                 }
             }
             return products;
         }
-    
+
         public void SaveImageData(int productId, byte[] ImageName)
         {
             using (SqlConnection connection = new SqlConnection(dbconnection))
@@ -1345,7 +1345,7 @@ namespace ECommerce.API.DataAccess
             var extension = Path.GetExtension(formFile.FileName);
             if (AllowedExtensions.Contains(extension))
             {
- 
+
                 if (formFile.Length < MaxFileSize)
                 {
                     string imageName = $"{Guid.NewGuid()}-{formFile.FileName}";
@@ -1355,7 +1355,7 @@ namespace ECommerce.API.DataAccess
                     stream.Dispose();
 
 
-                    return new ResultFile() { Successed = true, Url = $"/images/{folderName}/{imageName}"};
+                    return new ResultFile() { Successed = true, Url = $"/images/{folderName}/{imageName}" };
 
                 }
                 else
@@ -1397,13 +1397,13 @@ namespace ECommerce.API.DataAccess
             if (!string.IsNullOrEmpty(imageUrl))
             {
                 string _imagePath = $"{webHostEnvironment.WebRootPath}{imageUrl}";
-               
+
                 if (File.Exists(_imagePath))
                 {
                     System.IO.File.Delete(_imagePath);
                 }
 
-               
+
             }
         }
 
@@ -1448,7 +1448,7 @@ namespace ECommerce.API.DataAccess
                 {
                     try
                     {
-                        
+
                         SqlCommand deleteContactsCommand = new SqlCommand("DELETE FROM Contact WHERE UserId = @UserId", connection, transaction);
                         deleteContactsCommand.Parameters.AddWithValue("@UserId", userId);
                         deleteContactsCommand.ExecuteNonQuery();
@@ -1465,7 +1465,7 @@ namespace ECommerce.API.DataAccess
                         deletePaymentsCommand.Parameters.AddWithValue("@UserId", userId);
                         deletePaymentsCommand.ExecuteNonQuery();
 
-                    
+
                         SqlCommand deleteUserCommand = new SqlCommand("DELETE FROM Users WHERE UserId = @UserId", connection, transaction);
                         deleteUserCommand.Parameters.AddWithValue("@UserId", userId);
                         deleteUserCommand.ExecuteNonQuery();
@@ -1482,5 +1482,32 @@ namespace ECommerce.API.DataAccess
         }
 
 
+        public bool DeleteContact(int contactId)
+        {
+            using (SqlConnection connection = new SqlConnection(dbconnection))
+            {
+                connection.Open();
+                using (SqlTransaction transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        SqlCommand deleteContactsCommand = new SqlCommand("DELETE FROM Contact WHERE ContactId = @ContactId", connection, transaction);
+                        deleteContactsCommand.Parameters.AddWithValue("@ContactId", contactId);
+                        deleteContactsCommand.ExecuteNonQuery();
+
+                        transaction.Commit();
+                        return true;
+                    
+                    }
+                    catch (Exception ex)
+                    {
+
+                        Console.WriteLine($"Error deleting contact: {ex.Message}");
+                        return false;
+                    }
+
+                }
+            }
+        }
     }
 }

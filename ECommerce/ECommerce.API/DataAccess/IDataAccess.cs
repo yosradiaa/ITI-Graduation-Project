@@ -57,5 +57,6 @@ namespace ECommerce.API.DataAccess
         int GetPendingOrdersCount();
         int GetContactsCount();
         void DeleteUserAndRelatedData(int userId);
+        bool DeleteContact(int contactId);
     }
 }

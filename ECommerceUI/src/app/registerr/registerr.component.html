@@ -90,7 +90,7 @@
             </div>
             <div class="form-text error-message"
               *ngIf="((PWD.errors?.['minlength'] || PWD.errors?.['maxlength']) && (PWD.dirty || PWD.touched)) && (RPWD.dirty || RPWD.touched)">
-              Password should be at least 6 and at the max 15 characters long.
+              Password should be Between 6 and 15 Letters.
             </div>
           </div>
           <input type="password" placeholder="Password" id="pwd1" formControlName="pwd" class="form-control" />

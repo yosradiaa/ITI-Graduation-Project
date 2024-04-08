@@ -250,5 +250,9 @@ export class NavigationService {
   insertContact(contact: Contact): Observable<any> {
     return this.http.post<number>(`${this.baseurl}InsertContact`, contact);
   }
+
+  deleteContact(contactId: number): Observable<any> {
+    return this.http.delete<any>(`${this.baseurl}deleteContact/${contactId}`);
+  }
 }
 

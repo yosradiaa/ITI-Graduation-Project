@@ -47,7 +47,7 @@
 
             <button type="button" class="btn btn-outline-light" routerLink="/cart" *ngIf="utilityService.isLoggedIn()">
                 Cart
-                <span class="badge text-dark">{{cartItems}}</span>
+                <span class="badge text-light bg-danger">{{cartItems}}</span>
             </button>
             <button type="button" class="btn btn-outline-light" routerLink="/randomProduct"
                 *ngIf="utilityService.isLoggedIn()">

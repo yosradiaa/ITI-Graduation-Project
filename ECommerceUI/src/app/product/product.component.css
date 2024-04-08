@@ -95,3 +95,8 @@ button {
 .notification.success {
     display: block;
 }
+.list-view img{
+    width: 270px;
+    height: 270px;
+    object-fit: cover;
+}

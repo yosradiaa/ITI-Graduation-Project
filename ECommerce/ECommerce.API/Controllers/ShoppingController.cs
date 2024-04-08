@@ -572,28 +572,42 @@ namespace ECommerce.API.Controllers
         {
             try
             {
-                // Check if the user exists
+               
                 var user = dataAccess.GetUser(userId);
                 if (user == null)
                 {
                     return NotFound("User not found");
                 }
 
-                // Delete associated data
+                
                 dataAccess.DeleteUserAndRelatedData(userId);
 
                 return Ok("User and associated data deleted successfully");
             }
             catch (Exception ex)
             {
-                // Log the exception
+              
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
-    
+
+        [HttpDelete("deleteContact/{id}")]
+        public IActionResult DeleteContact(int id)
+        {
+            bool deleted = dataAccess.DeleteContact(id);
+            if (deleted)
+            {
+                return Ok("Contact deleted successfully.");
+            }
+            else
+            {
+                return NotFound("Contact not found or unable to delete.");
+            }
+        }
+    }
 
 }
-}
+
    
 
 

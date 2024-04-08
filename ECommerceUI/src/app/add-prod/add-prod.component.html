@@ -6,10 +6,15 @@
   <div class="form-group mb-3">
     <label for="title">title :</label>
     <input formControlName="title" type="text" class="form-control" name="title" id="title">
-    <div *ngIf="productForm.get('title')?.errors != null && productForm.get('title')?.touched"
-      class="alert alert-danger mt-2">
-      <p *ngIf="productForm.get('title')?.errors?.['required']" class="m-0">Title is required..!!</p>
-    </div>
+    <div *ngIf="productForm.get('title')?.invalid && productForm.get('title')?.dirty"
+          class="alert alert-danger mt-2">
+          <p *ngIf="productForm.get('title')?.errors?.['required']" class="m-0">Title is required.</p>
+          <p *ngIf="productForm.get('title')?.errors?.['pattern']" class="m-0">Title must contain only letters and spaces.</p>
+          <p *ngIf="productForm.get('title')?.errors?.['minlength'] && !productForm.get('title')?.errors?.['pattern']" class="m-0">Title must be at least 3 characters.</p>
+          <p *ngIf="productForm.get('title')?.errors?.['maxlength']" class="m-0">Title cannot exceed 50 characters.</p>
+          
+        </div>
+     
   </div>
 
   <div class="form-group mb-3">
@@ -43,9 +48,11 @@
   <div class="form-group mb-3">
     <label for="price">Price :</label>
     <input formControlName="price" type="text" class="form-control" name="price" id="price">
-    <div *ngIf="productForm.get('price')?.errors != null && productForm.get('price')?.touched"
+    <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.dirty"
       class="alert alert-danger mt-2">
-      <p *ngIf="productForm.get('price')?.errors?.['required']" class="m-0">Price is required..!!</p>
+      <p *ngIf="productForm.get('price')?.errors?.['required']" class="m-0">Price is required.</p>
+      <p *ngIf="productForm.get('price')?.errors?.['min']" class="m-0">Price must be at least 1000$.</p>
+      <p *ngIf="productForm.get('price')?.errors?.['pattern']" class="m-0">Price must be a number.</p>
     </div>
   </div>
 
@@ -53,19 +60,23 @@
   <div class="form-group mb-3">
     <label for="quantity">Quantity :</label>
     <input formControlName="quantity" type="text" class="form-control" name="quantity" id="quantity">
-    <div *ngIf="productForm.get('quantity')?.errors != null && productForm.get('quantity')?.touched"
-      class="alert alert-danger mt-2">
-      <p *ngIf="productForm.get('quantity')?.errors?.['required']" class="m-0">Quantity is required..!!</p>
-    </div>
+    <div *ngIf="productForm.get('quantity')?.invalid && productForm.get('quantity')?.dirty"
+        class="alert alert-danger mt-2">
+        <p *ngIf="productForm.get('quantity')?.errors?.['required']" class="m-0">Quantity is required.</p>
+        <p *ngIf="productForm.get('quantity')?.errors?.['min']" class="m-0">Quantity must be at least 1.</p>
+        <p *ngIf="productForm.get('quantity')?.errors?.['pattern']" class="m-0">Quantity must be a number.</p>
+      </div>
   </div>
 
   <div class="form-group mb-3">
     <label for="description">Description :</label>
     <textarea formControlName="description" class="form-control" id="description" name="description"></textarea>
-    <div *ngIf="productForm.get('description')?.errors != null && productForm.get('description')?.touched"
-      class="alert alert-danger mt-2">
-      <p *ngIf="productForm.get('description')?.errors?.['required']" class="m-0">Description is required..!!</p>
-    </div>
+    <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.dirty"
+    class="alert alert-danger mt-2">
+    <p *ngIf="productForm.get('description')?.errors?.['required']" class="m-0">Description is required.</p>
+    <p *ngIf="productForm.get('description')?.errors?.['minlength'] && !productForm.get('description')?.errors?.['pattern']" class="m-0">Description must be at least 5 characters.</p>
+    <p *ngIf="productForm.get('description')?.errors?.['pattern']" class="m-0">Description must contain only letters and spaces.</p>
+  </div>
   </div>
 
   <div class="form-group mb-3">

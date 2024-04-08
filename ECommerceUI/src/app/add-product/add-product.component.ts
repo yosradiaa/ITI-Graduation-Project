@@ -170,12 +170,12 @@ export class AddProductComponent implements OnInit {
 
   public productForm: FormGroup = new FormGroup({
     id: new FormControl(0),
-    title: new FormControl("", [Validators.required]),
-    price: new FormControl("", [Validators.required]),
-    quantity: new FormControl("", [Validators.required]),
+    title: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z ]+$')]),
+    price: new FormControl("", [Validators.required, Validators.min(1000), Validators.pattern('^[0-9]+$')]),
+    quantity: new FormControl("", [Validators.required, Validators.min(1), Validators.pattern('^[0-9]+$')]),
     offer: new FormControl("", [Validators.required]),
     productCategory: new FormControl("", [Validators.required]),
-    description: new FormControl("", [Validators.required]),
+    description: new FormControl("", [Validators.required, Validators.minLength(5), Validators.pattern('^[a-zA-Z ]+$')]),
     file: new FormControl(null, []),
   });
 

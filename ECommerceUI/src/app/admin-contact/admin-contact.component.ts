@@ -35,4 +35,20 @@ export class AdminContactComponent implements OnInit {
   }
 
 
+  deleteContact(contactId: number): void {
+    this.contactService.deleteContact(contactId).subscribe(
+      () => {
+        this.loadContacts();
+        console.log('Contact deleted successfully.');
+        this.contacts = this.contacts.filter(contact => contact.contactId !== contactId);
+       
+      },
+      error => {
+        this.loadContacts();
+        // console.error('Error deleting contact:', error);
+      }
+    );
+  }
 }
+
+

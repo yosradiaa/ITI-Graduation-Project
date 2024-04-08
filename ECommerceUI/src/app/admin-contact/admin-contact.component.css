@@ -1,0 +1,16 @@
+.card{
+    color: black;
+}
+button:nth-child(1){
+    border: none;
+    outline: none;
+    background: none!important;
+}
+button i{
+    color: red;
+   
+}
+.card-header{
+    display: flex;
+    justify-content:space-between;
+}

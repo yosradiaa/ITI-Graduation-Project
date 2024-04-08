@@ -2,7 +2,8 @@
 textarea {
     display: block;
 }
-#contact h3{
+
+#contact h3 {
     font-weight: bold;
 }
 
@@ -24,15 +25,17 @@ textarea {
     font-weight: bold;
     font-size: 16px;
 }
-#contact form{
+
+#contact form {
     background: none;
     background-color: transparent;
 }
+
 #contact form button {
     margin-top: 40px;
     text-align: center;
     padding: 12px;
-    background-color: rgb(87, 87, 87);
+    background-color: gray;
     color: #fff;
     border-radius: 10px;
     border: none;
@@ -43,7 +46,7 @@ textarea {
 }
 
 #contact form button:hover {
-    background-color: gray;
+    background-color: rgb(146, 145, 145);
     transition: all 0.5s;
 }
 
@@ -80,6 +83,7 @@ textarea {
 
 #contact {
     position: relative;
+    margin-top: -50px;
 }
 
 #contact h2 {
@@ -89,10 +93,35 @@ textarea {
 .imgContact {
     position: absolute;
     top: 24%;
-    left: 1%;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url('/assets/Images/2.jpeg');
+    left: 3%;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url('/assets/Images/furn.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     height: 450px;
+}
+
+.notification {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+
+.success-message {
+    background-color: #7fee99;
+    color: #155724;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+.validation-error {
+    color: red;
+    background-color: #f8dcdf;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
 }
