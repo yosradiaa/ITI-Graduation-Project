@@ -210,7 +210,6 @@ export class AddProductComponent implements OnInit {
 
 
   submitForm(): void {
-    if (this.productForm.valid) {
       if (this.editingProductId) {
         console.log(this.editingProductId);
         const formData = new FormData();
@@ -255,9 +254,7 @@ export class AddProductComponent implements OnInit {
       } else {
         console.error('No product is being edited.');
       }
-    } else {
-      console.error('Form is invalid. Please fill all required fields.');
-    }
+
   }
 
 

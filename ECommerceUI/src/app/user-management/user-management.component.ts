@@ -37,7 +37,7 @@ export class UserManagementComponent implements OnInit {
       address: ['', Validators.required],
       mobile: [
         '',
-        [Validators.required, Validators.pattern(/^(012|011|015)[0-9]{8}$/)],
+        [Validators.required, Validators.pattern(/^(012|011|015|010)[0-9]{8}$/)],
       ],
       password: ['', Validators.required],
     });
@@ -50,7 +50,7 @@ export class UserManagementComponent implements OnInit {
       address: ['', Validators.required],
       mobile: [
         '',
-        [Validators.required, Validators.pattern(/^(012|011|015)[0-9]{8}$/)],
+        [Validators.required, Validators.pattern(/^(012|011|015|010)[0-9]{8}$/)],
       ],
       password: ['', Validators.required],
     });

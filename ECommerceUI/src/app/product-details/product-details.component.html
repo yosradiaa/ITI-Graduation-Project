@@ -51,13 +51,13 @@
                     <h6 class="card-subtitle my-2 text-primary"> {{product.quantity}} products are available. </h6>
                     <div class="d-grid gap-2">
                         <button type="button" class="btn btn-outline-success" [disabled]="!utilityService.isLoggedIn()"
-                                (click)="this.utilityService.addToCart(product)"  (click)="addToCart(product)">Add to Cart
+                                  (click)="addToCart(product)">Add to Cart
                             <span *ngIf="!utilityService.isLoggedIn()">(Login First)</span>
                         </button>
                         <div *ngIf="showSuccess" class="notification success">Product added to cart successfully!</div>
                     </div>
                 </div>
-           
+
             </div>
         </div>
     </div>
